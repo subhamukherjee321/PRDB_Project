@@ -23,3 +23,5 @@ const productSchema = mongoose.model(
 );
 
 const ProductModel = mongoose.model("allproduct", productSchema);
+
+module.exports = ProductModel;
