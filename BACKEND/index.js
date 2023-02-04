@@ -4,6 +4,7 @@ const port = process.env.port;
 const express = require("express");
 const connection = require("./Config/db");
 const AuthRouter = require("./Routes/Auth.Router");
+const ErrorMiddleware = require("./Middleware/Error.Middleware");
 
 const app = express();
 app.use(express.json());
