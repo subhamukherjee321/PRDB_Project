@@ -39,7 +39,7 @@ const Navbar = () => {
       <Flex w={"35%"} justify={"space-between"} align={"center"}>
         <Flex align={"center"} font>
           <Menu position={"relative"}>
-            <MenuButton bg={"white"} as={Button} rightIcon={<ChevronDownIcon />}>
+            <MenuButton bg={"white"} _active={{bg: "white"}} _hover={{bg: "white"}} as={Button} rightIcon={<ChevronDownIcon />}>
               Categories
               {/* <BiChevronDown
                 cursor={"pointer"}
@@ -110,20 +110,20 @@ const Navbar = () => {
         <Flex
           align={"center"}
           gap={2}
-          cursor={"pointer"}
           _hover={{ color: colors.primary }}
           onMouseOver={() => setCartHover(true)}
           onMouseOut={() => setCartHover(false)}
           position={"relative"}
         >
-          <BsCartCheck fontSize={"1.2rem"} fontWeight={600} />
-          <Text>Cart</Text>
+          <BsCartCheck cursor={"pointer"} fontSize={"1.2rem"} fontWeight={600} />
+          <Text cursor={"pointer"}>Cart</Text>
           {cartHover && (
             <Box
               right={-20}
               top={6}
+              left={-20}
               position={"absolute"}
-              w={"400%"}
+              w={"350%"}
               borderRadius={"0.5rem"}
               backgroundColor={"white"}
               zIndex={"100"}
@@ -144,6 +144,7 @@ const Navbar = () => {
                 mt={"1rem"}
                 color={"#FF6F61"}
                 _hover={{ color: "#FF6900" }}
+                cursor={"pointer"}
               >
                 PROCEED TO CART
               </Box>
