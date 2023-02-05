@@ -13,9 +13,6 @@ const cartSchema = mongoose.Schema(
       ref: "allproduct",
     },
     userSelection: {
-      size: {
-        type: String,
-      },
       buyingPrice: {
         type: Number,
         required: true,
