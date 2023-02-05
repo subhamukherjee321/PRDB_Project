@@ -6,12 +6,12 @@ import { Autoplay, Pagination, Navigation } from "swiper";
 
 export default function Slider() {
   return (
-    <div style={{ maxWidth: "100%", margin: "auto"}}>
+    <div style={{ maxWidth: "100%", margin: "0 5rem" }}>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
-          delay: 5000,
+          delay: 3000,
           disableOnInteraction: false,
         }}
         pagination={{
@@ -21,35 +21,39 @@ export default function Slider() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide style={{ maxHeight: " 90vh" }}>
+        <SwiperSlide style={{ maxHeight:"90vh" }}>
           <img
             alt="2"
-            src={"https://cdn.shopify.com/s/files/1/0057/8938/4802/files/deks_01_76dd96ef-4dc3-466c-944d-b4e38da8b839.jpg?v=1639986488"}
+            src={
+              "https://images.unsplash.com/photo-1546435770-a3e426bf472b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=865&q=80"
+            }
             width={"100%"}
           />
         </SwiperSlide>
-        <SwiperSlide style={{ maxHeight: " 90vh" }}>
+        <SwiperSlide style={{ maxHeight: "90vh" }}>
           <img
             alt="2"
-            src={"https://oasis.opstatics.com/content/dam/oasis/page/2022/new-homepage/in/store/large-card-product/LargeCardProduct_PC_10t.jpg.thumb.webp"}
+            src={
+              "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+            }
             width={"100%"}
           />
         </SwiperSlide>
-        <SwiperSlide style={{ maxHeight: " 90vh" }}>
+        <SwiperSlide style={{ maxHeight: "90vh" }}>
           <img
             alt="3"
-            src="https://oasis.opstatics.com/content/dam/oasis/page/2022/new-homepage/in/store/large-card-product/LargeCardProduct_PC_10t.jpg.thumb.webp"
+            src="https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=864&q=80"
             width={"100%"}
           />
         </SwiperSlide>
-        <SwiperSlide style={{ maxHeight: " 90vh" }}>
+        <SwiperSlide style={{ maxHeight: "90vh" }}>
           <img
             alt="4"
-            src="https://images.samsung.com/is/image/samsung/assets/in/home/firstlook/2023_Family_KV_Horizontal_notxt_v1.1.jpg"
+            src="https://images.unsplash.com/photo-1524678606370-a47ad25cb82a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8aGVhZHBob25lc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
             width={"100%"}
           />
         </SwiperSlide>
       </Swiper>
     </div>
   );
-};
+}

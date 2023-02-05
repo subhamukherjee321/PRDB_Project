@@ -39,7 +39,7 @@ const Navbar = () => {
       <Flex w={"35%"} justify={"space-between"} align={"center"}>
         <Flex align={"center"} font>
           <Menu position={"relative"}>
-            <MenuButton bg={"white"} rightIcon={<ChevronDownIcon />}>
+            <MenuButton bg={"white"} as={Button} rightIcon={<ChevronDownIcon />}>
               Categories
               {/* <BiChevronDown
                 cursor={"pointer"}
