@@ -81,7 +81,8 @@ const Navbar = () => {
           <Text>Account</Text>
           {accountHover && (
             <Box
-              minW={"7%"}
+              minW={"8%"}
+              textAlign={"center"}
               position={"absolute"}
               p={"0.7rem"}
               backgroundColor={"white"}
