@@ -3,12 +3,15 @@ const port = process.env.port;
 
 const express = require("express");
 const connection = require("./Config/db");
+const ProductsRouter = require("./Routes/Products.Router");
 const AuthRouter = require("./Routes/Auth.Router");
 const ErrorMiddleware = require("./Middleware/Error.Middleware");
 
 const app = express();
 app.use(express.json());
+app.use("/products",ProductsRouter);
 app.use("/auth", AuthRouter);
+app.use(ErrorMiddleware);
 
 app.get("/", (req, res) => {
   res.status(200).send("Welcome To Subha Mukherjee's E-Commerce");
