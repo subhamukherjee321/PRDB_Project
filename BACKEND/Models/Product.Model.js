@@ -17,7 +17,7 @@ const productSchema = mongoose.Schema(
     seller: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "Auth",
+      ref: "auth",
     },
   },
   {

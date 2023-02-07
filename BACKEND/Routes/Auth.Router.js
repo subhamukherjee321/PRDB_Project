@@ -1,5 +1,5 @@
 require("dotenv").config();
-const key = process.env.scretKey;
+const key = process.env.secretKey;
 
 const { Router } = require("express");
 const AuthModel = require("../Models/Auth.Model");
@@ -9,6 +9,7 @@ const { TokenModel } = require("../Models/Token.Model");
 const SendEmail = require("../utils/SendEmail");
 const crypto = require("crypto");
 const ValidatorMiddleware = require("../Middleware/Validator.Middleware");
+const AuthenticatorMiddleware = require("../Middleware/Authenticator.Middleware");
 
 const auth = Router();
 const { body } = require("express-validator");
@@ -26,7 +27,7 @@ auth
       .withMessage("Password Contains Minimume 5 Character"),
     ValidatorMiddleware,
     async (req, res) => {
-      const { username, email, password } = req.body;
+      const { username, email, password, isSeller } = req.body;
 
       try {
         const newUser = await AuthModel.findOne({ email });
@@ -38,8 +39,10 @@ auth
             username,
             email,
             password: pass,
+            isSeller: isSeller,
           });
-          const token = await new TokenModel({
+          res.status(200).send({ message: "Account Created Successfully" });
+          /*const token = await new TokenModel({
             ID: User._id,
             token: crypto.randomBytes(32).toString("hex"),
           }).save();
@@ -48,7 +51,7 @@ auth
           await SendEmail(User.email, "Verify Email", url, User.username);
           res.send({
             message: "Please Check Your Mail To Verify Your Account!",
-          });
+          });*/
         }
       } catch (err) {
         res.status(401).send({
@@ -65,7 +68,7 @@ auth.post(
   body("email").isEmail().withMessage("Please Enter A Vaild Email"),
   body("password")
     .isLength({ min: 5 })
-    .withMessage("Password Should Contains Minimume 5 Character"),
+    .withMessage("Password Should Contains Minimum 5 Character"),
   ValidatorMiddleware,
   async (req, res) => {
     const { email, password } = req.body;
@@ -89,5 +92,48 @@ auth.post(
     }
   }
 );
+
+auth.route("/update/:id").patch(AuthenticatorMiddleware, async (req, res) => {
+  let payload = req.body;
+  let ID = req.params.id;
+  let admin = req.sellerID;
+
+  try {
+    let isAdmin = await AuthModel.findOne({ _id: admin });
+    if (!isAdmin.isAdmin) {
+      res
+        .status(400)
+        .send({ status: "Error", message: "You are not Authorized" });
+    } else {
+      await AuthModel.findByIdAndUpdate({ _id: ID }, payload);
+      res
+        .status(200)
+        .send({ status: "Success", message: "Updated Successfully" });
+    }
+  } catch (err) {
+    res.status(400).send({
+      error: err.message,
+      message: "Somthing Went Wrong While Updating",
+    });
+  }
+});
+
+auth
+  .route("/delete/:id")
+  .delete(AuthenticatorMiddleware, async (req, res) => {
+    let ID = req.params.id;
+
+    try {
+      let isAdmin = await AuthModel.findOne({_id: ID});
+      if(!isAdmin.isAdmin) {
+        res.status(400).send({status: "Failed", message: "You are not Authorized"})
+      } else {
+        await AuthModel.findByIdAndDelete({ _id: ID });
+        res.status(200).send({status: "Success", message: "Data Is Deleted"})
+      }
+    } catch (err) {
+      res.status(400).send({error: err.message, message: "Somthing Went Wrong While Deleting"});
+    }
+  });
 
 module.exports = auth;
