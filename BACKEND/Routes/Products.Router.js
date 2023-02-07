@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const ProductModel = require("../Models/Product.Model");
-const AddProductAuthMiddleware = require("../Middleware/AddProductAuth.Middleware");
+const AuthModel = require("../Models/Auth.Model");
+const AuthenticatorMiddleware = require("../Middleware/Authenticator.Middleware");
 
 const products = Router();
 
@@ -16,17 +17,22 @@ products.get("/", async (req, res) => {
   }
 });
 
-products.route("/add").post(AddProductAuthMiddleware, async (req, res) => {
+products.route("/add").post(AuthenticatorMiddleware, async (req, res) => {
   let payload = req.body;
+  let seller = req.sellerID;
   try {
-    let data = await ProductModel.findOne({ name: payload.name });
-    if (data) {
-      res.status(400).send({ message: "Product Already Exists" });
+    let isSeller = await AuthModel.findOne({ _id: seller });
+
+    if (!isSeller.isSeller) {
+      res.status(400).send({ message: "You are not Authorized" });
     } else {
-      // await ProductModel.create(payload);
-      res
-        .status(201)
-        .send({ message: "Product Successfully Added", data: payload });
+      let data = await ProductModel.findOne({ name: payload.name });
+      if (data) {
+        res.status(400).send({ message: "Product Already Exists" });
+      } else {
+        await ProductModel.create({ ...payload, seller });
+        res.status(201).send({ message: "Product Successfully Added" });
+      }
     }
   } catch (err) {
     res.status(400).send({
