@@ -26,6 +26,7 @@ export default function Home({products}) {
   );
 }
 
+// Getting All The Data From API
 export async function getStaticProps() {
   let res = await fetch("http://localhost:8080/products");
   let data = await res.json();
