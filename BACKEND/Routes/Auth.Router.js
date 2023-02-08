@@ -93,10 +93,11 @@ auth.post(
   }
 );
 
+// Admin Access Update For All Data
 auth.route("/update/:id").patch(AuthenticatorMiddleware, async (req, res) => {
   let payload = req.body;
   let ID = req.params.id;
-  let admin = req.sellerID;
+  let admin = req.authID;
 
   try {
     let isAdmin = await AuthModel.findOne({ _id: admin });
@@ -105,10 +106,17 @@ auth.route("/update/:id").patch(AuthenticatorMiddleware, async (req, res) => {
         .status(400)
         .send({ status: "Error", message: "You are not Authorized" });
     } else {
-      await AuthModel.findByIdAndUpdate({ _id: ID }, payload);
-      res
-        .status(200)
-        .send({ status: "Success", message: "Updated Successfully" });
+      if (payload.isSeller || payload.isAdmin) {
+        await AuthModel.findByIdAndUpdate(
+          { _id: ID },
+          { isSeller: payload.isSeller, isAdmin: payload.isAdmin }
+        );
+        res
+          .status(200)
+          .send({ status: "Success", message: "Updated Successfully" });
+      } else {
+        res.send({ status: "Failed", message: "Data is missing" });
+      }
     }
   } catch (err) {
     res.status(400).send({
@@ -118,21 +126,53 @@ auth.route("/update/:id").patch(AuthenticatorMiddleware, async (req, res) => {
   }
 });
 
+// Admin Access To Delete All Data
+auth.route("/delete/:id").delete(AuthenticatorMiddleware, async (req, res) => {
+  let ID = req.params.id;
+  let admin = req.authID;
+
+  try {
+    let isAdmin = await AuthModel.findOne({ _id: admin });
+    if (!isAdmin.isAdmin) {
+      res
+        .status(400)
+        .send({ status: "Failed", message: "You are not Authorized" });
+    } else {
+      await AuthModel.findByIdAndDelete({ _id: ID });
+      res.status(200).send({ status: "Success", message: "Data Is Deleted" });
+    }
+  } catch (err) {
+    res.status(400).send({
+      error: err.message,
+      message: "Somthing Went Wrong While Deleting",
+    });
+  }
+});
+
+// User Can Update Own Data
 auth
-  .route("/delete/:id")
-  .delete(AuthenticatorMiddleware, async (req, res) => {
+  .route("/selfupdate/:id")
+  .patch(AuthenticatorMiddleware, async (req, res) => {
+    let payload = req.body;
     let ID = req.params.id;
+    let user = req.authID;
 
     try {
-      let isAdmin = await AuthModel.findOne({_id: ID});
-      if(!isAdmin.isAdmin) {
-        res.status(400).send({status: "Failed", message: "You are not Authorized"})
+      if (user === ID) {
+        await AuthModel.findByIdAndUpdate({ _id: ID }, payload);
+        res
+          .status(200)
+          .send({ status: "Success", message: "Updated Successfully" });
       } else {
-        await AuthModel.findByIdAndDelete({ _id: ID });
-        res.status(200).send({status: "Success", message: "Data Is Deleted"})
+        res
+          .status(500)
+          .send({ status: "Failed", message: "You Are Not Authorized" });
       }
     } catch (err) {
-      res.status(400).send({error: err.message, message: "Somthing Went Wrong While Deleting"});
+      res.status(400).send({
+        error: err.message,
+        message: "Something Went Wrong While Updating",
+      });
     }
   });
 

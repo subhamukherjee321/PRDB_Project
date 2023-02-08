@@ -8,13 +8,13 @@ const authenticator = (req, res, next) => {
     if (token) {
       const decoded = jwt.verify(token, key);
       if (decoded) {
-        req.sellerID = decoded.id;
+        req.authID = decoded.id;
         next();
       } else {
-        res.status(400).send({ message: "Login again" });
+        res.status(500).send({ message: "Login again" });
       }
     } else {
-      res.status(400).send({ message: "Login First" });
+      res.status(500).send({ message: "Login First" });
     }
   } catch (err) {
     console.log(err.message);
