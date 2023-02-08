@@ -21,7 +21,7 @@ export default function Slider() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide style={{ maxHeight:"90vh" }}>
+        <SwiperSlide>
           <img
             alt="2"
             src={
@@ -30,7 +30,7 @@ export default function Slider() {
             width={"100%"}
           />
         </SwiperSlide>
-        <SwiperSlide style={{ maxHeight: "90vh" }}>
+        <SwiperSlide>
           <img
             alt="2"
             src={
@@ -39,14 +39,14 @@ export default function Slider() {
             width={"100%"}
           />
         </SwiperSlide>
-        <SwiperSlide style={{ maxHeight: "90vh" }}>
+        <SwiperSlide>
           <img
             alt="3"
             src="https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=864&q=80"
             width={"100%"}
           />
         </SwiperSlide>
-        <SwiperSlide style={{ maxHeight: "90vh" }}>
+        <SwiperSlide>
           <img
             alt="4"
             src="https://images.unsplash.com/photo-1524678606370-a47ad25cb82a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8aGVhZHBob25lc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"

@@ -41,11 +41,6 @@ const Navbar = () => {
           <Menu position={"relative"}>
             <MenuButton bg={"white"} _active={{bg: "white"}} _hover={{bg: "white"}} as={Button} rightIcon={<ChevronDownIcon />}>
               Categories
-              {/* <BiChevronDown
-                cursor={"pointer"}
-                fontSize={"1.5rem"}
-                _hover={{ color: colors.primary }}
-              /> */}
             </MenuButton>
             <MenuList position={"absolute"} zIndex={100}>
               <MenuItem _hover={{ color: colors.primary }}>Download</MenuItem>
