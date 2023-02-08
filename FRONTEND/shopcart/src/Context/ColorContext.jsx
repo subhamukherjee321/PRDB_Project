@@ -4,8 +4,8 @@ export const ColorContext = createContext();
 
 const ColorContextProvider = ({ children }) => {
     const colors = {
-        primary: "#0EA9CC",
-        secondary: "#F05925"
+        primary: "#F05925",
+        secondary: "#0EA9CC"
     };
 
   return <ColorContext.Provider value={{colors}}>{ children }</ColorContext.Provider>;
