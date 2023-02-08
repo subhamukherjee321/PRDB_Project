@@ -19,7 +19,7 @@ products.get("/", async (req, res) => {
 
 products.route("/add").post(AuthenticatorMiddleware, async (req, res) => {
   let payload = req.body;
-  let seller = req.sellerID;
+  let seller = req.authID;
   try {
     let isSeller = await AuthModel.findOne({ _id: seller });
 
