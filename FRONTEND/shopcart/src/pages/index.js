@@ -1,10 +1,14 @@
 import Head from "next/head";
+import Image from "next/image";
+import { Inter } from "@next/font/google";
 import { Box, Heading } from "@chakra-ui/react";
 import Slider from "@/Components/Home/Slider";
 import HomeProducts from "@/Components/Home/HomeProducts";
 import HomeProductsHeading from "@/Components/Home/HomeProductsHeading";
 
-export default function Home({ products }) {
+const inter = Inter({ subsets: ["latin"] });
+
+export default function Home({products}) {
   return (
     <>
       <Head>
