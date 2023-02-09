@@ -31,13 +31,17 @@ const Navbar = () => {
       py={"0.5rem"}
       justify={"space-between"}
       align={"center"}
-      fontWeight={500}
+      fontWeight={"500"}
+      position={"fixed"}
+      top={0}
+      bg={"white"}
+      zIndex={200}
     >
       <Flex w={"14%"}>
         <Image alt={"Logo"} src={Logo.src} w={"100%"} />
       </Flex>
       <Flex w={"35%"} justify={"space-between"} align={"center"}>
-        <Flex align={"center"} font>
+        <Flex align={"center"}>
           <Menu position={"relative"}>
             <MenuButton bg={"white"} _active={{bg: "white"}} _hover={{bg: "white"}} as={Button} rightIcon={<ChevronDownIcon />}>
               Categories

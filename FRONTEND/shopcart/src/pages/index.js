@@ -5,6 +5,7 @@ import { Box, Heading } from "@chakra-ui/react";
 import Slider from "@/Components/Home/Slider";
 import HomeProducts from "@/Components/Home/HomeProducts";
 import HomeProductsHeading from "@/Components/Home/HomeProductsHeading";
+import AddProductsPage from "./AddProductPage";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,9 +19,10 @@ export default function Home({products}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Box>
-        <Slider />
+        {/* <Slider />
         <HomeProductsHeading text={"Headphones For You"} />
-        <HomeProducts products={products} />
+        <HomeProducts products={products} /> */}
+        <AddProductsPage />
       </Box>
     </>
   );

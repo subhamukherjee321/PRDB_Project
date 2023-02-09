@@ -12,8 +12,7 @@ const productSchema = mongoose.Schema(
     discountPrice: { type: Number, required: true },
     discount: { type: Number, default: 0 },
     saveMoney: { type: Number, required: true },
-    primaryImage: { type: String, required: true },
-    imageUrls: [{ color: String, images: Array }],
+    imageUrls: [{ color: String, images: [] }],
     seller: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
