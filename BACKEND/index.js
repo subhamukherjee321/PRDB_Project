@@ -6,9 +6,14 @@ const connection = require("./Config/db");
 const ProductsRouter = require("./Routes/Products.Router");
 const AuthRouter = require("./Routes/Auth.Router");
 const ErrorMiddleware = require("./Middleware/Error.Middleware");
+const fileUpload = require("express-fileupload")
 
 const app = express();
 app.use(express.json());
+app.use(fileUpload({
+  useTempFiles:true,
+  tempFileDir:'/tmp/'
+}))
 app.use("/products",ProductsRouter);
 app.use("/auth", AuthRouter);
 app.use(ErrorMiddleware);
