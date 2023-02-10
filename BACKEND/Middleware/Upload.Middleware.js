@@ -1,14 +1,27 @@
 const path = require("path");
 const multer = require("multer");
+const fs = require("fs");
+
+const createDir = (dir) => {
+  dir = `./uploads/${dir}`;
+
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+  }
+};
 
 const Storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");
+    // console.log('file: ', file);
+    createDir(file.fieldname);
+    cb(null, `./uploads/${file.fieldname}/`);
   },
   filename: (req, file, cb) => {
     console.log("multer", file);
     let ext = path.extname(file.originalname);
-    cb(null, file.colorName + '_' + Date.now() + ext);
+    if (!fs.existsSync(`./uploads/${file.fieldname}/${file.originalname}`)) {
+      cb(null, file.originalname + ext);
+    }
   },
 });
 
@@ -18,9 +31,9 @@ const upload = multer({
     if (
       file.mimetype === "image/png" ||
       file.mimetype === "image/jpg" ||
-      file.mimetype === "image/jpeg"
+      file.mimetype === "image/jpeg" ||
+      file.mimetype === "image/webp"
     ) {
-
       cb(null, true);
     } else {
       cb(null, false);
