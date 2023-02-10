@@ -5,17 +5,19 @@ import {
   FormLabel,
   Input,
   Stack,
-  Link,
   Button,
   Heading,
-  Text,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react";
+import { CloseIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import _ from "lodash";
+import axios from "axios";
 
 const initState = {
   name: "",
+  quantity: 5,
   category: "",
   type: "",
   brand: "",
@@ -24,15 +26,14 @@ const initState = {
   discountPrice: "",
   discount: "",
   saveMoney: "",
-  primaryImage: "",
-  imageUrls: null,
+  imageUrls: [],
 };
 
 export default function SimpleCard() {
   const [formData, setFormData] = useState(initState);
   const [color, setColor] = useState("");
   const [colorData, setColorData] = useState([]);
-
+  const toast = useToast();
   const createImageArray = () => {
     setColorData((prev) => [...prev, { color: color, images: [] }]);
   };
@@ -49,24 +50,79 @@ export default function SimpleCard() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // let val = e.target != file ? value : e.target.file
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = () => {
-    let uploadForm = new FormData();
-    for (let key in formData) {
-      uploadForm.append(key, formData[key]);
-    }
+  const sendForm = async (data) => {
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        auth: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTI4MTQyMjg5MTA3NmY4OWM0ZmY0MSIsImlhdCI6MTY3NjAzNzk5OCwiZXhwIjoxNjc2MDczOTk4fQ.IECBTDA_i_ccC0MqnnZjVU3MDut-8INNjTmly8ddpRU",
+      },
+    };
+    const res = await axios.post(
+      "http://localhost:8080/products/add",
+      data,
+      config
+    );
+    console.log(res);
+  };
 
-    for (let eachColor of colorData) {
-      _.forEach(eachColor.images, (file) => {
-        file.colorName = eachColor.color;
-        uploadForm.append("images", file)
+  const handleSubmit = () => {
+    let {
+      name,
+      category,
+      type,
+      brand,
+      description,
+      price,
+      discountPrice,
+      discount,
+      saveMoney,
+      imageUrls,
+    } = formData;
+
+    if (
+      !name ||
+      !category ||
+      !type ||
+      !brand ||
+      !description ||
+      !price ||
+      !discountPrice ||
+      !discount ||
+      !saveMoney ||
+      !imageUrls
+    ) {
+      toast({
+        title: "Fill all the Credentials",
+        status: "error",
+        duration: 1000,
+        isClosable: true,
+        position: "top",
       });
+    } else {
+      let uploadForm = new FormData();
+      for (let key in formData) {
+        uploadForm.append(key, formData[key]);
+      }
+
+      colorData.forEach(({ color, images }) => {
+        _.forEach(images, (image) => {
+          uploadForm.append(color, image);
+        });
+      });
+
+      sendForm(uploadForm);
+      setFormData(initState);
+      setColor("");
+      setColorData([]);
     }
-    
-    console.log(formData)
+  };
+
+  const handleDelete = (id) => {
+    let newData = colorData.filter((ele, i) => i !== id);
+    setColorData(newData);
   };
 
   return (
@@ -94,6 +150,15 @@ export default function SimpleCard() {
                 name="name"
                 onChange={handleChange}
                 value={formData.name}
+              />
+            </FormControl>
+            <FormControl id="name">
+              <FormLabel>Quantity</FormLabel>
+              <Input
+                type="number"
+                name="quantity"
+                onChange={handleChange}
+                value={formData.quantity}
               />
             </FormControl>
             <FormControl id="category">
@@ -168,15 +233,6 @@ export default function SimpleCard() {
                 value={formData.saveMoney}
               />
             </FormControl>
-            <FormControl id="primaryImage">
-              <FormLabel>Primary Image</FormLabel>
-              <Input
-                type="file"
-                name="primaryImage"
-                onChange={handleChange}
-                value={formData.primaryImage}
-              />
-            </FormControl>
             <FormControl id="color">
               <FormLabel>Color Name</FormLabel>
               <Input
@@ -192,16 +248,25 @@ export default function SimpleCard() {
 
             {colorData.map((item, i) => {
               return (
-                <li key={i}>
-                  <label>{item.color}</label>&nbsp;
-                  <input
-                    multiple
-                    type="file"
-                    accept="image/jpeg,image/png"
-                    onChange={setImages}
-                    name={item.color}
-                  />
-                </li>
+                <Flex justify={"space-between"}>
+                  <li key={i}>
+                    <label>{item.color}</label>&nbsp;
+                    <input
+                      multiple
+                      type="file"
+                      accept="image/jpeg,image/png"
+                      onChange={setImages}
+                      name={item.color}
+                    />
+                  </li>
+                  <Button color={"white"} size={"sm"} onClick={() => handleDelete(i)}>
+                    <CloseIcon
+                      fontSize={"0.7rem"}
+                      fontWeight={800}
+                      color={"red"}
+                    />
+                  </Button>
+                </Flex>
               );
             })}
 
