@@ -1,9 +1,9 @@
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
+    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -106,3 +106,95 @@ a {
     color-scheme: dark;
   }
 }
+
+/* Slider CSS */
+/*.slider_card_parent {
+  text-align: left;
+  height: auto;
+  padding: 0px 10px;
+}
+.slider_card_parent > div > img {
+  width: 90%;
+  margin: auto;
+  cursor: pointer;
+}
+.slider_card_parent > div:nth-child(2) {
+  text-align: center;
+}
+.slider_card_parent > div:nth-child(3) {
+  text-align: center;
+}
+.slider_card_parent > div:nth-child(3) > p:nth-child(1) {
+  font-size: 14px;
+  line-height: 18px;
+}
+.slider_card_parent > div:nth-child(2) > p:nth-child(1):hover {
+  text-decoration: underline;
+}
+.slider_card_parent > div:nth-child(3) > p:nth-child(2) {
+  font-size: 15px;
+  line-height: 18px;
+}
+.carousel_container {
+  /* border: 1px solid red;
+  width: 100%;
+  gap: 1rem;
+  padding: 0 5rem;
+  margin-top: 5rem;
+}
+.slider_heading {
+  margin-top: 40px;
+}
+.slider_heading > p {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+.iPhone_slider_heading {
+  width: 90%;
+  margin: auto;
+  margin-top: 50px;
+  border-bottom: 1px solid rgba(66, 66, 66, 0.5);
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* the slides 
+.slick-slide {
+  margin: 0 15px;
+}
+/* the parent 
+.slick-list {
+  margin: 0 -15px;
+}
+
+.iPhone_slider_heading > h2:nth-child(2) {
+  background: linear-gradient(
+    140deg,
+    rgba(98, 4, 250, 1) 14%,
+    rgba(253, 29, 29, 1) 62%,
+    rgba(252, 176, 69, 1) 99%
+  );
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media screen and (min-width: 400px) and (max-width: 550px) {
+  .carousel_container {
+    width: 85%;
+    margin: auto;
+  }
+}
+@media screen and (min-width: 200px) and (max-width: 400px) {
+  .carousel_container {
+    width: 75%;
+    margin: auto;
+    margin-top: 40px;
+  }
+  .slider_heading,
+  .iPhone_slider_heading {
+    text-align: center;
+  }
+}*/

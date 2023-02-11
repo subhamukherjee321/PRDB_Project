@@ -22,7 +22,7 @@ import Search from "./Search";
 const Navbar = () => {
   const [cartHover, setCartHover] = useState(false);
   const [accountHover, setAccountHover] = useState(false);
-  const { colors } = useContext(ColorContext);
+  const { colorStatus, colors } = useContext(ColorContext);
 
   return (
     <Flex
@@ -31,6 +31,11 @@ const Navbar = () => {
       py={"0.5rem"}
       justify={"space-between"}
       align={"center"}
+      fontWeight={500}
+      position={"fixed"}
+      bg={colors.secondary}
+      zIndex={1000}
+      top={0}
       fontWeight={"500"}
       position={"fixed"}
       top={0}
@@ -44,24 +49,25 @@ const Navbar = () => {
         <Flex align={"center"}>
           <Menu position={"relative"}>
             <MenuButton bg={"white"} _active={{bg: "white"}} _hover={{bg: "white"}} as={Button} rightIcon={<ChevronDownIcon />}>
+              <Text color={ colorStatus ? "black" : "black"}>Categories</Text>
               Categories
             </MenuButton>
             <MenuList position={"absolute"} zIndex={100}>
-              <MenuItem _hover={{ color: colors.primary }}>Download</MenuItem>
-              <MenuItem _hover={{ color: colors.primary }}>Create a Copy</MenuItem>
-              <MenuItem _hover={{ color: colors.primary }}>Mark as Draft</MenuItem>
-              <MenuItem _hover={{ color: colors.primary }}>Delete</MenuItem>
-              <MenuItem _hover={{ color: colors.primary }}>Attend a Workshop</MenuItem>
+              <MenuItem >Download</MenuItem>
+              <MenuItem >Create a Copy</MenuItem>
+              <MenuItem >Mark as Draft</MenuItem>
+              <MenuItem >Delete</MenuItem>
+              <MenuItem >Attend a Workshop</MenuItem>
             </MenuList>
           </Menu>
         </Flex>
-        <Text cursor={"pointer"} _hover={{ color: colors.primary }}>
+        <Text cursor={"pointer"} _hover={{ borderBottom: "1px solid" }}>
           Deals
         </Text>
-        <Text cursor={"pointer"} _hover={{ color: colors.primary }}>
+        <Text cursor={"pointer"} _hover={{ borderBottom: "1px solid" }}>
           What&apos;s New
         </Text>
-        <Text cursor={"pointer"} _hover={{ color: colors.primary }}>
+        <Text cursor={"pointer"} _hover={{ borderBottom: "1px solid" }}>
           Delivery
         </Text>
       </Flex>
@@ -72,7 +78,6 @@ const Navbar = () => {
           align={"center"}
           gap={2}
           cursor={"pointer"}
-          _hover={{ color: colors.primary }}
           onMouseOver={() => setAccountHover(true)}
           onMouseOut={() => setAccountHover(false)}
         >
@@ -110,7 +115,7 @@ const Navbar = () => {
         <Flex
           align={"center"}
           gap={2}
-          _hover={{ color: colors.primary }}
+          _hover={{ borderBottom: "1px solid" }}
           onMouseOver={() => setCartHover(true)}
           onMouseOut={() => setCartHover(false)}
           position={"relative"}
