@@ -6,10 +6,16 @@ const connection = require("./Config/db");
 const ProductsRouter = require("./Routes/Products.Router");
 const AuthRouter = require("./Routes/Auth.Router");
 const ErrorMiddleware = require("./Middleware/Error.Middleware");
+// const fileUpload = require("express-fileupload");
+const AccessControlMiddleware = require("./Middleware/AccessControl.Middleware");
 
 const app = express();
+// app.use(cors);
+app.use(AccessControlMiddleware);
 app.use(express.json());
-app.use("/products",ProductsRouter);
+app.use(express.urlencoded({ extended: false }));
+app.use("/uploads", express.static("uploads"))
+app.use("/products", ProductsRouter);
 app.use("/auth", AuthRouter);
 app.use(ErrorMiddleware);
 

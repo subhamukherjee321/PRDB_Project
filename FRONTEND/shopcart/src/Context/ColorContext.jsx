@@ -8,6 +8,8 @@ const ColorContextProvider = ({ children }) => {
     const colors = {
         primary: colorStatus ? "black" : "white",
         secondary: colorStatus ? "black" : "white"
+        primary: "#F05925",
+        secondary: "#0EA9CC"
     };
 
   return <ColorContext.Provider value={{colors, colorStatus, setColorStatus}}>{ children }</ColorContext.Provider>;
