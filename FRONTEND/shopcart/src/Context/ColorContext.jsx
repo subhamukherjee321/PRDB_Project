@@ -1,14 +1,16 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const ColorContext = createContext();
 
 const ColorContextProvider = ({ children }) => {
+  const [colorStatus, setColorStatus] = useState(false);
+
     const colors = {
-        primary: "#0EA9CC",
-        secondary: "#F05925"
+        primary: colorStatus ? "black" : "white",
+        secondary: colorStatus ? "black" : "white"
     };
 
-  return <ColorContext.Provider value={{colors}}>{ children }</ColorContext.Provider>;
+  return <ColorContext.Provider value={{colors, colorStatus, setColorStatus}}>{ children }</ColorContext.Provider>;
 };
 
 export default ColorContextProvider;
