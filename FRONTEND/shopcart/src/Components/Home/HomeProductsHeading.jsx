@@ -7,4 +7,4 @@ const HomeProductsHeading = ({text}) => {
   )
 }
 
-export default HomeProductsHeading
+export default HomeProductsHeading;

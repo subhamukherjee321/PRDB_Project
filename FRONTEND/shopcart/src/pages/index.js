@@ -14,11 +14,11 @@ import PhotoBannerSlider from "@/Components/Home/PhotoBanner/PhotoBannerSlider";
 import Navbar from "@/Components/Navbar/Navbar";
 import ColorModeToggle from "@/Components/Home/ColorModeToggle";
 import BackToTopButton from "@/Components/Home/HomProductsSlider/BackToTopButton";
-import AddProductsPage from "./AddProductPage";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({products}) {
+  console.log('products: ', products);
   return (
     <>
       <Head>
@@ -43,16 +43,11 @@ export default function Home({products}) {
         <VideoBanner />
         <BackToTopButton />
         <Footer />
-        {/* <Slider />
-        <HomeProductsHeading text={"Headphones For You"} />
-        <HomeProducts products={products} /> */}
-        <AddProductsPage />
       </Box>
     </>
   );
 }
 
-// Getting All The Data From API
 export async function getStaticProps() {
   let res = await fetch("http://localhost:8080/products");
   let data = await res.json();

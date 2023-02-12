@@ -36,11 +36,6 @@ const Navbar = () => {
       bg={colors.secondary}
       zIndex={1000}
       top={0}
-      fontWeight={"500"}
-      position={"fixed"}
-      top={0}
-      bg={"white"}
-      zIndex={200}
     >
       <Flex w={"14%"}>
         <Image alt={"Logo"} src={Logo.src} w={"100%"} />
@@ -49,8 +44,7 @@ const Navbar = () => {
         <Flex align={"center"}>
           <Menu position={"relative"}>
             <MenuButton bg={"white"} _active={{bg: "white"}} _hover={{bg: "white"}} as={Button} rightIcon={<ChevronDownIcon />}>
-              <Text color={ colorStatus ? "black" : "black"}>Categories</Text>
-              Categories
+              <Text color={ "black"}>Categories</Text>
             </MenuButton>
             <MenuList position={"absolute"} zIndex={100}>
               <MenuItem >Download</MenuItem>
