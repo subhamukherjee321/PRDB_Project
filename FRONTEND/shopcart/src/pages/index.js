@@ -49,7 +49,7 @@ export default function Home({products}) {
 }
 
 export async function getStaticProps() {
-  let res = await fetch("http://localhost:8080/products");
+  let res = await fetch("https://mock-server-movies.vercel.app/products");
   let data = await res.json();
 
   return {
