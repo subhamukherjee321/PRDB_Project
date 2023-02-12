@@ -28,7 +28,7 @@ export default function Home({products}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Box>
-        <ColorModeToggle />
+        
         <Navbar />
         <Slider />
         <HomeProductsHeading text={"Best Deals For You"} />

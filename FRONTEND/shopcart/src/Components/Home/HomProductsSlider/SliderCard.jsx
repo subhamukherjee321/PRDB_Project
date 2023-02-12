@@ -7,6 +7,7 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion"
 import { AiFillStar, AiTwotoneThunderbolt } from "react-icons/ai";
 import React, { useContext } from "react";
 import { ColorContext } from "@/Context/ColorContext";

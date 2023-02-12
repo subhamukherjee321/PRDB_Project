@@ -8,6 +8,7 @@ const Search = () => {
   return (
     <Flex bg={"#E2E8F0"} borderRadius={"1rem"} w={"60%"}>
       <Input
+        color={"black"}
         placeholder="Search Product"
         borderRadius={"1rem"}
         size="sm"
