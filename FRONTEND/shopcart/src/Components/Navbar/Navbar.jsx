@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import React, { useContext, useState } from "react";
-import Logo from "../../Assets/Logo.png";
+import Logo from "../../Assets/Logo2.png";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import { BsCartCheck } from "react-icons/bs";
 import { BiChevronDown } from "react-icons/bi";
@@ -38,20 +38,28 @@ const Navbar = () => {
       top={0}
     >
       <Flex w={"14%"}>
-        <Image alt={"Logo"} src={Logo.src} w={"100%"} />
+        <Link href={"/"}>
+          <Image alt={"Logo"} src={Logo.src} w={"100%"} />
+        </Link>
       </Flex>
       <Flex w={"35%"} justify={"space-between"} align={"center"}>
         <Flex align={"center"}>
           <Menu position={"relative"}>
-            <MenuButton bg={"white"} _active={{bg: "white"}} _hover={{bg: "white"}} as={Button} rightIcon={<ChevronDownIcon />}>
-              <Text color={ "black"}>Categories</Text>
+            <MenuButton
+              bg={"white"}
+              _active={{ bg: "white" }}
+              _hover={{ bg: "white" }}
+              as={Button}
+              rightIcon={<ChevronDownIcon />}
+            >
+              <Text color={"black"}>Categories</Text>
             </MenuButton>
             <MenuList position={"absolute"} zIndex={100}>
-              <MenuItem >Download</MenuItem>
-              <MenuItem >Create a Copy</MenuItem>
-              <MenuItem >Mark as Draft</MenuItem>
-              <MenuItem >Delete</MenuItem>
-              <MenuItem >Attend a Workshop</MenuItem>
+              <MenuItem>Download</MenuItem>
+              <MenuItem>Create a Copy</MenuItem>
+              <MenuItem>Mark as Draft</MenuItem>
+              <MenuItem>Delete</MenuItem>
+              <MenuItem>Attend a Workshop</MenuItem>
             </MenuList>
           </Menu>
         </Flex>
@@ -93,15 +101,19 @@ const Navbar = () => {
               onMouseOut={() => setAccountHover(false)}
               color={"black"}
             >
-              <Box
-                pb={"0.5rem"}
-                borderBottom={"0.5px solid gray"}
-                _hover={{ color: "#FF6900" }}
-                fontSize={"1rem"}
-              >
-                Log In
-              </Box>
-              <Box _hover={{ color: "#FF6900" }}>Sign Up</Box>
+              <Link href={"/login"}>
+                <Box
+                  pb={"0.5rem"}
+                  borderBottom={"0.5px solid gray"}
+                  _hover={{ color: "#FF6900" }}
+                  fontSize={"1rem"}
+                >
+                  Log In
+                </Box>
+              </Link>
+              <Link href={"/signup"}>
+                <Box _hover={{ color: "#FF6900" }}>Sign Up</Box>
+              </Link>
             </Box>
           )}
         </Flex>
@@ -114,7 +126,11 @@ const Navbar = () => {
           onMouseOut={() => setCartHover(false)}
           position={"relative"}
         >
-          <BsCartCheck cursor={"pointer"} fontSize={"1.2rem"} fontWeight={600} />
+          <BsCartCheck
+            cursor={"pointer"}
+            fontSize={"1.2rem"}
+            fontWeight={600}
+          />
           <Text cursor={"pointer"}>Cart</Text>
           {cartHover && (
             <Box

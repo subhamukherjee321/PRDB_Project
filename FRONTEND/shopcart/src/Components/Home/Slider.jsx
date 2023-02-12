@@ -3,10 +3,13 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper";
+import { motion } from "framer-motion";
 
 export default function Slider() {
   return (
-    <div style={{ maxWidth: "100%", margin: "80px 5rem"}}>
+    <div
+      style={{ maxWidth: "100%", margin: "80px 5rem" }}
+    >
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
