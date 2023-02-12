@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "@next/font/google";
 import { Box, Heading } from "@chakra-ui/react";
 import Slider from "@/Components/Home/Slider";
 import HomeProducts from "@/Components/Home/HomeProducts";
@@ -49,7 +48,7 @@ export default function Home({products}) {
 }
 
 export async function getStaticProps() {
-  let res = await fetch("https://mock-server-movies.vercel.app/products");
+  let res = await fetch("http://localhost:8080/products");
   let data = await res.json();
 
   return {
