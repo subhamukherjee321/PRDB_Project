@@ -3,12 +3,11 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper";
-import { motion } from "framer-motion";
 
 export default function Slider() {
   return (
     <div
-      style={{ maxWidth: "100%", margin: "80px 5rem" }}
+      style={{ maxWidth: "100%", margin: "0 5rem" }}
     >
       <Swiper
         spaceBetween={30}
@@ -37,7 +36,7 @@ export default function Slider() {
           <img
             alt="2"
             src={
-              "https://cdn.shopify.com/s/files/1/0057/8938/4802/files/wave-beat-new_desktop_1400x.jpg?v=1675873942"
+              "https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Desktop-192_1400x.jpg?v=1676266993"
             }
             width={"100%"}
           />
