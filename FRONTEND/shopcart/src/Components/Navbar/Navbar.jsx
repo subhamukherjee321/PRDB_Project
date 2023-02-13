@@ -18,24 +18,34 @@ import { BiChevronDown } from "react-icons/bi";
 import { ColorContext } from "@/Context/ColorContext";
 import Link from "next/link";
 import Search from "./Search";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const [cartHover, setCartHover] = useState(false);
   const [accountHover, setAccountHover] = useState(false);
   const { colorStatus, colors } = useContext(ColorContext);
+  const router = useRouter();
 
   return (
     <Flex
+      boxShadow={!colorStatus && "0px 15px 10px -21px #111"}
+      borderBottom={colorStatus && "1px solid"}
+      borderColor={"gray"}
       w={"100%"}
       px={"5rem"}
       py={"0.5rem"}
       justify={"space-between"}
       align={"center"}
       fontWeight={500}
-      position={"fixed"}
       bg={colors.secondary}
-      zIndex={1000}
-      top={0}
+      position={"sticky"}
+      top={"0px"}
+      zIndex={40}
+      display={
+        router.asPath === "/login" || router.asPath === "/signup"
+          ? "none"
+          : "flex"
+      }
     >
       <Flex w={"14%"}>
         <Link href={"/"}>
@@ -63,9 +73,11 @@ const Navbar = () => {
             </MenuList>
           </Menu>
         </Flex>
-        <Text cursor={"pointer"} _hover={{ borderBottom: "1px solid" }}>
-          Deals
-        </Text>
+        <Link href={"/products"}>
+          <Text cursor={"pointer"} _hover={{ borderBottom: "1px solid" }}>
+            All Products
+          </Text>
+        </Link>
         <Text cursor={"pointer"} _hover={{ borderBottom: "1px solid" }}>
           What&apos;s New
         </Text>
@@ -84,7 +96,7 @@ const Navbar = () => {
           onMouseOut={() => setAccountHover(false)}
         >
           <MdOutlineManageAccounts fontSize={"1.2rem"} fontWeight={600} />
-          <Text>Account</Text>
+          <Text  _hover={{borderBottom: "1px solid black" }}>Account</Text>
           {accountHover && (
             <Box
               minW={"8%"}
@@ -131,7 +143,7 @@ const Navbar = () => {
             fontSize={"1.2rem"}
             fontWeight={600}
           />
-          <Text cursor={"pointer"}>Cart</Text>
+          <Text cursor={"pointer"} _hover={{borderBottom: "1px solid transparent" }}>Cart</Text>
           {cartHover && (
             <Box
               right={-20}
