@@ -1,17 +1,13 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Image } from "@chakra-ui/react";
 import Slider from "@/Components/Home/Slider";
 import HomeProducts from "@/Components/Home/HomeProducts";
 import HomeProductsHeading from "@/Components/Home/HomeProductsHeading";
 import HomeProductSlider from "@/Components/Home/HomProductsSlider/HomeProductSlider";
 import Discover from "@/Components/Home/Discover";
 import DareToLeap from "@/Components/Home/DareToLeap";
-import Footer from "@/Components/Footer";
 import VideoBanner from "@/Components/Home/VideoBanner";
 import PhotoBannerSlider from "@/Components/Home/PhotoBanner/PhotoBannerSlider";
-import Navbar from "@/Components/Navbar/Navbar";
-import ColorModeToggle from "@/Components/Home/ColorModeToggle";
 import BackToTopButton from "@/Components/Home/HomProductsSlider/BackToTopButton";
 
 export default function Home({products}) {
@@ -37,7 +33,6 @@ export default function Home({products}) {
         <DareToLeap />
         <VideoBanner />
         <BackToTopButton />
-        <Footer />
       </Box>
     </>
   );

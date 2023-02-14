@@ -28,6 +28,8 @@ const Navbar = () => {
 
   return (
     <Flex
+      boxSizing="border-box"
+      m={"0px"}
       boxShadow={!colorStatus && "0px 15px 10px -21px #111"}
       borderBottom={colorStatus && "1px solid"}
       borderColor={"gray"}
@@ -96,7 +98,7 @@ const Navbar = () => {
           onMouseOut={() => setAccountHover(false)}
         >
           <MdOutlineManageAccounts fontSize={"1.2rem"} fontWeight={600} />
-          <Text  _hover={{borderBottom: "1px solid black" }}>Account</Text>
+          <Text _hover={{ borderBottom: "1px solid black" }}>Account</Text>
           {accountHover && (
             <Box
               minW={"8%"}
@@ -143,14 +145,19 @@ const Navbar = () => {
             fontSize={"1.2rem"}
             fontWeight={600}
           />
-          <Text cursor={"pointer"} _hover={{borderBottom: "1px solid transparent" }}>Cart</Text>
+          <Text
+            cursor={"pointer"}
+            _hover={{ borderBottom: "1px solid transparent" }}
+          >
+            Cart
+          </Text>
           {cartHover && (
             <Box
               right={-20}
               top={6}
               left={-20}
               position={"absolute"}
-              w={"350%"}
+              w={"320%"}
               borderRadius={"0.5rem"}
               backgroundColor={"white"}
               zIndex={"100"}
@@ -162,7 +169,7 @@ const Navbar = () => {
               onMouseOut={() => setCartHover(false)}
               color={"black"}
             >
-              <Flex justify={"space-between"} w={"95%"}>
+              <Flex justify={"space-between"} w={"100%"}>
                 <Box>Order Summary</Box>
                 <Box>0 Item</Box>
               </Flex>

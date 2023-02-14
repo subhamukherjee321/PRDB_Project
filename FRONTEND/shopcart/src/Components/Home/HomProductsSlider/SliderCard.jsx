@@ -7,7 +7,7 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 import { AiFillStar, AiTwotoneThunderbolt } from "react-icons/ai";
 import React, { useContext } from "react";
 import { ColorContext } from "@/Context/ColorContext";
@@ -90,7 +90,7 @@ function SliderCard({ item }) {
         <Box mt={"0.5rem"}>
           <Button
             colorScheme="black"
-            _hover={{ bg: colors.secondary, color: "#F7C20A" }}
+            _hover={{ bg: colorStatus ? "white" : "black", color: "#F7C20A" }}
             _active={{ bg: "#4A5568", color: "white" }}
             borderRadius={"0.3rem"}
             size={"sm"}
