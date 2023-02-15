@@ -1,3 +1,4 @@
+import Products from "@/Components/Home/Products";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -13,7 +14,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
-import ReactImageMagnify from "react-image-magnify";
 
 const Page = ({ product }) => {
   const [colorData, setColorData] = useState(product.images[0]);
@@ -157,6 +157,7 @@ const Page = ({ product }) => {
 
 export default Page;
 
+// Getting All The Products
 export async function getStaticPaths() {
   let res = await fetch("https://mock-server-movies.vercel.app/products");
   let data = await res.json();
@@ -167,6 +168,7 @@ export async function getStaticPaths() {
   };
 }
 
+// Getting Single Product Data
 export async function getStaticProps(context) {
   const {
     params: { id },
