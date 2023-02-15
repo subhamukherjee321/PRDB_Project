@@ -1,3 +1,4 @@
+import Products from "@/Components/Home/Products";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -157,6 +158,7 @@ const Page = ({ product }) => {
 
 export default Page;
 
+// Getting All The Products
 export async function getStaticPaths() {
   let res = await fetch("https://mock-server-movies.vercel.app/products");
   let data = await res.json();
@@ -167,6 +169,7 @@ export async function getStaticPaths() {
   };
 }
 
+// Getting Single Product Data
 export async function getStaticProps(context) {
   const {
     params: { id },
