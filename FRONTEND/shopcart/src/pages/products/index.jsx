@@ -18,12 +18,17 @@ import {
 } from "@chakra-ui/react";
 import Head from "next/head";
 import React, { useContext } from "react";
-import { BiFilter } from "react-icons/bi";
-import { SearchIcon } from "@chakra-ui/icons";
 import { ColorContext } from "@/Context/ColorContext";
+import { useRouter } from "next/router";
 
 const products = ({ products }) => {
   const { colorStatus, colors } = useContext(ColorContext);
+  const router = useRouter();
+
+  const handleRoutes = (id) => {
+    console.log("id: ", id);
+    router.push(`/products/${id}`);
+  };
 
   return (
     <>
@@ -33,14 +38,13 @@ const products = ({ products }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Flex
-        mx={"5rem"}
-        justify={"space-between"}
-      >
+      <Flex mx={"5rem"} justify={"space-between"}>
         {/* Filters */}
         <Filters />
 
-        <Heading mt={"0.5rem"} size={"lg"}>All Products</Heading>
+        <Heading mt={"0.5rem"} size={"lg"}>
+          All Products
+        </Heading>
 
         {/* Sorting  */}
         <SortBy />
@@ -56,7 +60,11 @@ const products = ({ products }) => {
         gap={"2rem 0.5rem"}
       >
         {products &&
-          products.map((item) => <SliderCard key={item.id} item={item} />)}
+          products.map((item) => (
+            <Box onClick={() => handleRoutes(item.id)}>
+              <SliderCard key={item.id} item={item} />
+            </Box>
+          ))}
       </Grid>
     </>
   );
