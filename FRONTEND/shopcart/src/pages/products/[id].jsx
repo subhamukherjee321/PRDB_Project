@@ -27,18 +27,18 @@ const Page = ({ product }) => {
         <title>Shopkart/Products/{product.title}</title>
         <meta name="description" content="movie app created" />
         <link rel="icon" href="/favicon.ico" />
-      </Head>{" "}
+      </Head>
       <Box>
         <Box m={"0.6rem auto"} mx={"2rem"}>
-        <Tooltip label="Go Back" aria-label='A tooltip'>
-          <Button
-            onClick={() => router.back()}
-            colorScheme="twitter"
-            variant="outline"
-            size={"sm"}
-          >
-            <ArrowBackIcon/>
-          </Button>
+          <Tooltip label="Go Back" aria-label="A tooltip">
+            <Button
+              onClick={() => router.back()}
+              colorScheme="twitter"
+              variant="outline"
+              size={"sm"}
+            >
+              <ArrowBackIcon />
+            </Button>
           </Tooltip>
         </Box>
         <Flex justify={"space-between"} mx={"5rem"} mb={"3rem"}>
@@ -166,7 +166,7 @@ export async function getStaticPaths() {
     paths: data.map((product) => ({ params: { id: product.id.toString() } })),
     fallback: false,
   };
-};
+}
 
 // Getting Single Product Data
 export async function getStaticProps(context) {
@@ -182,4 +182,4 @@ export async function getStaticProps(context) {
       product: data,
     },
   };
-};
+}
