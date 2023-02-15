@@ -60,7 +60,6 @@ export default function Page() {
 
   const handleUpload = async (img, name) => {
     try {
-      console.log(img, name);
       let arr = [];
       for (let i = 0; i < img.length; i++) {
         let data = await uploadImg(img[i]);
