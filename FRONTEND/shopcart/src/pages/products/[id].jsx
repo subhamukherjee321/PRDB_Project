@@ -14,7 +14,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
-import ReactImageMagnify from "react-image-magnify";
 
 const Page = ({ product }) => {
   const [colorData, setColorData] = useState(product.images[0]);
