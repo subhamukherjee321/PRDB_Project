@@ -166,7 +166,7 @@ export async function getStaticPaths() {
     paths: data.map((product) => ({ params: { id: product.id.toString() } })),
     fallback: false,
   };
-}
+};
 
 // Getting Single Product Data
 export async function getStaticProps(context) {
@@ -182,4 +182,4 @@ export async function getStaticProps(context) {
       product: data,
     },
   };
-}
+};
