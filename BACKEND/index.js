@@ -10,7 +10,6 @@ const ErrorMiddleware = require("./Middleware/Error.Middleware");
 const AccessControlMiddleware = require("./Middleware/AccessControl.Middleware");
 
 const app = express();
-// app.use(cors);
 app.use(AccessControlMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
