@@ -5,9 +5,11 @@ const AuthenticatorMiddleware = require("../Middleware/Authenticator.Middleware"
 
 const products = Router();
 
-products.get("/", async (req, res) => {
+products.get("/:id", async (req, res) => {
+  let ID = req.params.id;
+  
   try {
-    let productsData = await ProductModel.find();
+    let productsData = await ProductModel.find({_id: ID});
     res.status(201).send(productsData);
   } catch (err) {
     res.status(400).send({
