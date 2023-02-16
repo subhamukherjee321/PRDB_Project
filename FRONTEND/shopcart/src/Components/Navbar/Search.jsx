@@ -6,7 +6,7 @@ import { ColorContext } from "@/Context/ColorContext";
 const Search = () => {
   const { colorStatus, colors } = useContext(ColorContext);
   return (
-    <Flex bg={"#E2E8F0"} borderRadius={"1rem"} w={"60%"}>
+    <Flex bg={"#E2E8F0"} borderRadius={"1rem"} w={"48%"}>
       <Input
         _placeholder={{color: "black"}}
         color={"black"}
