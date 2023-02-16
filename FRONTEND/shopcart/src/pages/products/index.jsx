@@ -19,16 +19,9 @@ import {
 import Head from "next/head";
 import React, { useContext } from "react";
 import { ColorContext } from "@/Context/ColorContext";
-import { useRouter } from "next/router";
 
 const products = ({ products }) => {
   const { colorStatus, colors } = useContext(ColorContext);
-  const router = useRouter();
-
-  const handleRoutes = (id) => {
-    console.log("id: ", id);
-    router.push(`/products/${id}`);
-  };
 
   return (
     <>
@@ -57,11 +50,7 @@ const products = ({ products }) => {
         gap={"2rem 0.5rem"}
       >
         {products &&
-          products.map((item) => (
-            <Box onClick={() => handleRoutes(item._id)}>
-              <SliderCard key={item.id} item={item} />
-            </Box>
-          ))}
+          products.map((item) => <SliderCard key={item.id} item={item} />)}
       </Grid>
     </>
   );

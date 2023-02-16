@@ -8,6 +8,7 @@ import SampleNextArrow from "./SampleNextArrow";
 import SamplePrevArrow from "./SamplePrevArrow";
 
 const HomeProductSlider = ({ products }) => {
+
   var settings = {
     dots: true,
     infinite: false,
@@ -53,8 +54,8 @@ const HomeProductSlider = ({ products }) => {
     <Box w={"100%"} my={"2rem"} px={"5rem"} mb={"1.5rem"}>
       <Box>
         <Slider {...settings}>
-          {products &&
-            products.map((item) => <SliderCard key={item._id} item={item} />)}
+            {products &&
+              products.map((item) => <SliderCard key={item._id} item={item} />)}
         </Slider>
       </Box>
     </Box>

@@ -30,7 +30,7 @@ export default function ColorModeToggle(props) {
       }
     >
       <Button
-        top={600}
+        top={550}
         zIndex={2000}
         left={5}
         position={"fixed"}

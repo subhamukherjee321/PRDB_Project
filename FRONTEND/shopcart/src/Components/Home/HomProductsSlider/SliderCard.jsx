@@ -7,13 +7,21 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
-import { motion } from "framer-motion";
 import { AiFillStar, AiTwotoneThunderbolt } from "react-icons/ai";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ColorContext } from "@/Context/ColorContext";
+import { useRouter } from "next/router";
+import { FaHeart } from "react-icons/fa";
 
 function SliderCard({ item }) {
   const { colorStatus, colors } = useContext(ColorContext);
+  const [changeImage, setChangeImage] = useState(false);
+  const router = useRouter();
+
+  const handleRoutes = (id) => {
+    console.log("id: ", id);
+    router.push(`/products/${id}`);
+  };
 
   return (
     <Box
@@ -28,6 +36,7 @@ function SliderCard({ item }) {
         transformOrigin: "center",
         boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
       }}
+      onClick={() => handleRoutes(item._id)}
     >
       <Flex
         mr={"1rem"}
@@ -38,11 +47,19 @@ function SliderCard({ item }) {
         position={"relative"}
       >
         <Image
+          minH={"100px"}
           mt={"1.1rem"}
           borderRadius={"0.7rem 0.7rem 0 0"}
           alt={item.name}
-          src={item.images[0].image_urls[0]}
+          src={
+            changeImage
+              ? item.images[0].image_urls[1]
+              : item.images[0].image_urls[0]
+          }
           w={"70%"}
+          objectFit={"cover"}
+          onMouseOver={() => setChangeImage(true)}
+          onMouseOut={() => setChangeImage(false)}
         />
         <Flex
           position={"absolute"}
@@ -57,6 +74,10 @@ function SliderCard({ item }) {
             SUPER SAVER
           </Text>
         </Flex>
+
+        <Box position={"absolute"} cursor={"pointer"} right={3} top={4}>
+          <FaHeart color={"white"} fontWeight={"bold"} fontSize={"1.5rem"} />
+        </Box>
       </Flex>
       <Box
         p={"1rem"}
@@ -66,7 +87,7 @@ function SliderCard({ item }) {
         mb={"0.5rem"}
         bg={colors.secondary}
       >
-        <Heading as={"h4"} fontSize={"1.2rem"}>
+        <Heading as={"h4"} fontSize={"1.2rem"} cursor={"pointer"}>
           {item.name.substring(0, 20)}
         </Heading>
         <Flex justify={"space-between"} my={"0.7rem"} w={"70%"}>
@@ -87,8 +108,7 @@ function SliderCard({ item }) {
         </Flex>
         <Box mt={"0.5rem"}>
           <Button
-            colorScheme="black"
-            _hover={{ bg: colorStatus ? "white" : "black", color: "#F7C20A" }}
+            _hover={{ bg: colorStatus ? "grey" : "black", color: "#F7C20A" }}
             _active={{ bg: "#4A5568", color: "white" }}
             borderRadius={"0.3rem"}
             size={"sm"}
