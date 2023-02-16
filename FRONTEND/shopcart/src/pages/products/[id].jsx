@@ -159,11 +159,12 @@ export default Page;
 
 // Getting All The Products
 export async function getStaticPaths() {
-  let res = await fetch("https://mock-server-movies.vercel.app/products");
+  let res = await fetch("https://shopkart-backend.cyclic.app/products");
   let data = await res.json();
+  console.log('data: ', data);
 
   return {
-    paths: data.map((product) => ({ params: { id: product.id.toString() } })),
+    paths: data.map((product) => ({ params: { id: product._id.toString() } })),
     fallback: false,
   };
 }
@@ -174,7 +175,7 @@ export async function getStaticProps(context) {
     params: { id },
   } = context;
 
-  let res = await fetch(`https://mock-server-movies.vercel.app/products/${id}`);
+  let res = await fetch(`https://shopkart-backend.cyclic.app/products/${id}`);
   let data = await res.json();
 
   return {

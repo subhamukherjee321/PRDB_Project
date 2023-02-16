@@ -49,19 +49,16 @@ const products = ({ products }) => {
         {/* Sorting  */}
         <SortBy />
       </Flex>
-      {/* <Box>
-        <Image src={""} alt={"banner"} />
-      </Box> */}
+
       <Grid
         my={"1.5rem"}
         px={"5rem"}
         templateColumns="repeat(4, 1fr)"
-        templateRows="repeat(3, 1fr)"
         gap={"2rem 0.5rem"}
       >
         {products &&
           products.map((item) => (
-            <Box onClick={() => handleRoutes(item.id)}>
+            <Box onClick={() => handleRoutes(item._id)}>
               <SliderCard key={item.id} item={item} />
             </Box>
           ))}
@@ -73,7 +70,7 @@ const products = ({ products }) => {
 export default products;
 
 export async function getStaticProps() {
-  let res = await fetch("https://mock-server-movies.vercel.app/products");
+  let res = await fetch("https://shopkart-backend.cyclic.app/products");
   let data = await res.json();
 
   return {

@@ -12,6 +12,7 @@ import BackToTopButton from "@/Components/Home/HomProductsSlider/BackToTopButton
 
 export default function Home({products}) {
   console.log('products: ', products);
+
   return (
     <>
       <Head>
@@ -39,7 +40,7 @@ export default function Home({products}) {
 }
 
 export async function getStaticProps() {
-  let res = await fetch("https://mock-server-movies.vercel.app/products");
+  let res = await fetch("https://shopkart-backend.cyclic.app/products");
   let data = await res.json();
 
   return {
