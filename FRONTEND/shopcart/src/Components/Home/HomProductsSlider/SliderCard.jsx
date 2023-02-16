@@ -41,9 +41,7 @@ function SliderCard({ item }) {
           mt={"1.1rem"}
           borderRadius={"0.7rem 0.7rem 0 0"}
           alt={item.name}
-          src={
-            "https://cdn.shopify.com/s/files/1/0057/8938/4802/products/0cfa4417-0213-4b49-b78e-0ae68aeb7057_600x.png?v=1625046144"
-          }
+          src={item.images[0].image_urls[0]}
           w={"70%"}
         />
         <Flex
@@ -69,16 +67,16 @@ function SliderCard({ item }) {
         bg={colors.secondary}
       >
         <Heading as={"h4"} fontSize={"1.2rem"}>
-          {item.title}
+          {item.name.substring(0, 20)}
         </Heading>
         <Flex justify={"space-between"} my={"0.7rem"} w={"70%"}>
           <Heading as={"h4"} fontSize={"1rem"}>
-            ₹ {item.discount_price}
+            ₹ {item.discountPrice}
           </Heading>
           <Text color={"#38A169"}>{item.discount}% off</Text>
           <del style={{ fontSize: "0.8rem" }}>₹ {item.price}</del>
         </Flex>
-        <Text fontSize={"0.9rem"}>{item.description.substring(0, 30)}</Text>
+        <Text fontSize={"0.9rem"}>{item.description.substring(0, 28)}</Text>
         <Flex mt={"0.2rem"}>
           <Flex align={"center"}>
             {new Array(~~item.rating).fill(0).map((ele, i) => (

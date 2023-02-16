@@ -16,6 +16,7 @@
     "@next/font": "13.1.6",
     "babel-eslint": "^10.1.0",
     "blaze-slider": "^1.9.1",
+    "dotenv": "^16.0.3",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
     "framer-motion": "^9.0.2",

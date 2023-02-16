@@ -54,7 +54,7 @@ const HomeProductSlider = ({ products }) => {
       <Box>
         <Slider {...settings}>
           {products &&
-            products.map((item) => <SliderCard key={item.id} item={item} />)}
+            products.map((item) => <SliderCard key={item._id} item={item} />)}
         </Slider>
       </Box>
     </Box>
