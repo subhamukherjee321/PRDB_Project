@@ -19,6 +19,7 @@ import { ColorContext } from "@/Context/ColorContext";
 import Link from "next/link";
 import Search from "./Search";
 import { useRouter } from "next/router";
+import { FaHeart } from "react-icons/fa";
 
 const Navbar = () => {
   const [cartHover, setCartHover] = useState(false);
@@ -54,7 +55,7 @@ const Navbar = () => {
           <Image alt={"Logo"} src={Logo.src} w={"100%"} />
         </Link>
       </Flex>
-      <Flex w={"35%"} justify={"space-between"} align={"center"}>
+      <Flex w={"31%"} justify={"space-between"} align={"center"}>
         <Flex align={"center"}>
           <Menu position={"relative"}>
             <MenuButton
@@ -67,29 +68,48 @@ const Navbar = () => {
               <Text color={"black"}>Categories</Text>
             </MenuButton>
             <MenuList position={"absolute"} zIndex={100}>
-              <MenuItem>Download</MenuItem>
-              <MenuItem>Create a Copy</MenuItem>
-              <MenuItem>Mark as Draft</MenuItem>
-              <MenuItem>Delete</MenuItem>
-              <MenuItem>Attend a Workshop</MenuItem>
+              <MenuItem>Wireless</MenuItem>
+              <MenuItem>With Wired</MenuItem>
+              <MenuItem>Airpods</MenuItem>
+              <MenuItem>Gaming</MenuItem>
             </MenuList>
           </Menu>
         </Flex>
         <Link href={"/products"}>
           <Text cursor={"pointer"} _hover={{ borderBottom: "1px solid" }}>
-            All Products
+            All Heaphones
           </Text>
         </Link>
-        <Text cursor={"pointer"} _hover={{ borderBottom: "1px solid" }}>
-          What&apos;s New
-        </Text>
-        <Text cursor={"pointer"} _hover={{ borderBottom: "1px solid" }}>
-          Delivery
-        </Text>
+        <Flex align={"center"}>
+          <Menu position={"relative"}>
+            <MenuButton
+              bg={"white"}
+              _active={{ bg: "white" }}
+              _hover={{ bg: "white" }}
+              as={Button}
+              rightIcon={<ChevronDownIcon />}
+            >
+              <Text color={"black"}>Brands</Text>
+            </MenuButton>
+            <MenuList position={"absolute"} zIndex={100}>
+              <MenuItem>Apple</MenuItem>
+              <MenuItem>boAt</MenuItem>
+              <MenuItem>Realme</MenuItem>
+              <MenuItem>Cosmic Byte</MenuItem>
+            </MenuList>
+          </Menu>
+        </Flex>
       </Flex>
-      <Flex w={"40%"} justify={"space-between"} align={"center"}>
+      <Flex w={"45%"} justify={"space-between"} align={"center"}>
         {/* Search Input */}
         <Search />
+
+        {/* Wishlist */}
+        <Flex align={"center"} gap={2} cursor={"pointer"} _hover={{borderBottom: "1px solid"}}>
+          <FaHeart />
+          <Text>Wishlist</Text>
+        </Flex>
+
         <Flex
           align={"center"}
           gap={2}
