@@ -16,15 +16,16 @@ import React, { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 
 const Page = ({ product }) => {
+  product = product[0];
+  console.log('product: ', product);
   const [colorData, setColorData] = useState(product.images[0]);
   const [photo, setPhoto] = useState(colorData.image_urls[0]);
   const router = useRouter();
-  product = product;
 
   return (
     <>
       <Head>
-        <title>Shopkart/Products/{product.title}</title>
+        <title>Shopkart/Products/{product?.name}</title>
         <meta name="description" content="movie app created" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -49,6 +50,7 @@ const Page = ({ product }) => {
                   return (
                     <Box key={i}>
                       <Image
+                        bg={"#E3E3E3"}
                         src={item}
                         alt={"colors"}
                         border={"1px solid"}
@@ -80,11 +82,11 @@ const Page = ({ product }) => {
                 },
               }}
             /> */}
-              <Image src={photo} alt={product.title} w={"100%"} />
+              <Image src={photo} alt={product.name} w={"100%"} />
             </Box>
           </Flex>
           <Box w={"48%"} fontSize={"1.2rem"} fontWeight={500}>
-            <Heading>{product.title}</Heading>
+            <Heading>{product?.name}</Heading>
             <Text w={"60%"} mt={"1rem"} fontSize={"0.9rem"}>
               {product.description}
             </Text>
@@ -95,9 +97,9 @@ const Page = ({ product }) => {
             {/* Rating Section */}
             <Flex mt={"0.8rem"} gap={2}>
               <Flex align={"center"} gap={1}>
-                {new Array(~~product.rating).fill(0).map((ele, i) => (
+                {product.rating > 0 ? (product.rating > 0 && new Array(~~product.rating).fill(0).map((ele, i) => (
                   <AiFillStar fontSize={"1.3rem"} color={"#38A169"} key={i} />
-                ))}
+                ))) : <Text>Rating :</Text>}
               </Flex>
               <Text>{product.rating}</Text>
               <Text>|</Text>
@@ -106,7 +108,7 @@ const Page = ({ product }) => {
 
             <Flex my={"0.7rem"} gap={3} fontSize={"1.3rem"} align={"center"}>
               <Text fontSize={"1.7rem"} fontWeight={"bold"}>
-                ₹ {product.discount_price}
+                ₹ {product.discountPrice}
               </Text>
               <Text color={"#38A169"}>{product.discount}% off</Text>
               <del style={{ fontSize: "1.2rem" }}>₹ {product.price}</del>
@@ -115,11 +117,12 @@ const Page = ({ product }) => {
               Choose a Color
             </Text>
             <Flex w={"65%"} gap={3}>
-              {product.images.map((item, i) => (
-                <Box key={i}>
+              {product?.images.map((item, i) => (
+                <Box key={i} maxW={"22%"}>
                   <Image
+                    bg={"#E3E3E3"}
                     border={"2px solid"}
-                    src={item.image_urls}
+                    src={item.image_urls[0]}
                     alt={item.color}
                     maxH={"150px"}
                     _hover={{ bg: "rgba(0, 128, 128, 0.3)" }}
@@ -127,12 +130,13 @@ const Page = ({ product }) => {
                     borderRadius={"0.3rem"}
                     cursor={"pointer"}
                     onClick={() => setColorData({ ...item })}
+                    w={"100%"}
                   />
                   <Text
                     textAlign={"center"}
                     fontWeight={"bold"}
                     fontSize={"1rem"}
-                    color={item.color.toLowerCase()}
+                    w={"100%"}
                   >
                     {item.color}
                   </Text>
