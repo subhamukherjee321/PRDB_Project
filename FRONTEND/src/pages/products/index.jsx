@@ -58,6 +58,7 @@ const products = ({ products }) => {
 
 export default products;
 
+// Getting All The Data
 export async function getStaticProps() {
   let res = await fetch("https://shopkart-backend.cyclic.app/products");
   let data = await res.json();
