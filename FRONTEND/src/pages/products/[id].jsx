@@ -1,5 +1,6 @@
 import Products from "@/Components/Home/Products";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+import ReactImageMagnify from "react-image-magnify";
 import {
   Box,
   Button,
@@ -17,7 +18,7 @@ import { AiFillStar } from "react-icons/ai";
 
 const Page = ({ product }) => {
   product = product[0];
-  console.log('product: ', product);
+  console.log("product: ", product);
   const [colorData, setColorData] = useState(product.images[0]);
   const [photo, setPhoto] = useState(colorData.image_urls[0]);
   const router = useRouter();
@@ -68,21 +69,24 @@ const Page = ({ product }) => {
               boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
               bg={"#E3E3E3"}
             >
-              {/* <ReactImageMagnify
-              {...{
-                smallImage: {
-                  alt: "Wristwatch by Ted Baker London",
-                  isFluidWidth: true,
-                  src: photo,
-                },
-                largeImage: {
-                  src: photo,
-                  width: 1200,
-                  height: 1800,
-                },
-              }}
-            /> */}
-              <Image src={photo} alt={product.name} w={"100%"} />
+              <ReactImageMagnify
+                {...{
+                  smallImage: {
+                    alt: "Product Items",
+                    isFluidWidth: true,
+                    src: photo,
+                  },
+                  largeImage: {
+                    src: photo,
+                    width: 650,
+                    height: 600,
+                  },
+                  enlargedImageContainerDimensions: {
+                    width: "110%",
+                    height: "110%",
+                  },
+                }}
+              />
             </Box>
           </Flex>
           <Box w={"48%"} fontSize={"1.2rem"} fontWeight={500}>
@@ -97,9 +101,20 @@ const Page = ({ product }) => {
             {/* Rating Section */}
             <Flex mt={"0.8rem"} gap={2}>
               <Flex align={"center"} gap={1}>
-                {product.rating > 0 ? (product.rating > 0 && new Array(~~product.rating).fill(0).map((ele, i) => (
-                  <AiFillStar fontSize={"1.3rem"} color={"#38A169"} key={i} />
-                ))) : <Text>Rating :</Text>}
+                {product.rating > 0 ? (
+                  product.rating > 0 &&
+                  new Array(~~product.rating)
+                    .fill(0)
+                    .map((ele, i) => (
+                      <AiFillStar
+                        fontSize={"1.3rem"}
+                        color={"#38A169"}
+                        key={i}
+                      />
+                    ))
+                ) : (
+                  <Text>Rating :</Text>
+                )}
               </Flex>
               <Text>{product.rating}</Text>
               <Text>|</Text>
@@ -165,7 +180,7 @@ export default Page;
 export async function getStaticPaths() {
   let res = await fetch("https://shopkart-backend.cyclic.app/products");
   let data = await res.json();
-  console.log('data: ', data);
+  console.log("data: ", data);
 
   return {
     paths: data.map((product) => ({ params: { id: product._id.toString() } })),
