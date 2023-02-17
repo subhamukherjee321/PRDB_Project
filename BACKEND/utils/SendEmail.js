@@ -21,7 +21,7 @@ module.exports = async (email, subject, url, name) => {
       <p style="font-weight:bold;">Hello, ${name}</p>
       <p>Are you ready to gain access to all of the assets we prepared for customer's of NewWave.</p>
       <p>First, you must complete your registration by clicking on the button below:</p>
-      <button style="padding:5px; font-size:20px; cursor:pointer; border-radius:10px; border:none; background-color:DodgerBlue;"><a href=${url} style="text-decoration:none; color:black;">Verify Now</a></button>
+      <button style="padding: 10px 15px; font-size:15px; cursor:pointer; border-radius:10px; border:none; background-color:DodgerBlue;"><a href=${url} style="text-decoration:none; color:black;">Verify Now</a></button>
       <p>This link will verify your email address, and then you’ll officially be a part of the NewWave company.</p>
       <p>See you there!</p>
       <p>Best regards, the NewWave team.</p>

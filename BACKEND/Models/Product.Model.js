@@ -18,6 +18,7 @@ const productSchema = mongoose.Schema(
       required: true,
       ref: "auth",
     },
+    rating: { type: Number, default: 0 },
   },
   {
     versionKey: false,
