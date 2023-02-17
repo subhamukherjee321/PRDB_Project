@@ -4,28 +4,29 @@ const cartSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
       required: true,
-      ref: "auth",
     },
-    product: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "allproduct",
-    },
-    userSelection: {
-      buyingPrice: {
-        type: Number,
-        required: true,
+    products: [
+      {
+        product: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Product",
+        },
+        expectedDeliveryDate: {
+          type: Date,
+          default: () => new Date(new Date().setDate(new Date().getDate() + 7)),
+        },
       },
-      returnType: {
-        type: String,
-        required: true,
-      },
+    ],
+    cartValue: {
+      type: Number,
+      require: true,
     },
   },
   {
-    versionKey: false,
     timestamps: true,
+    versionKey: false
   }
 );
 
