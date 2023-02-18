@@ -13,6 +13,8 @@ import {
   InputRightElement,
   useToast,
 } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { login, resetLogin } from "@/Redux/LoginRedux/Login.Actions";
 
 const LoginMainFrom = () => {
   const [loginData, setLogindata] = useState({
@@ -20,14 +22,113 @@ const LoginMainFrom = () => {
     password: "",
   });
 
+  const dispatch = useDispatch();
+  const status = useSelector((store) => store.login);
+  console.log("status: ", status);
+  console.log(status.isAuth);
+
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
   const toast = useToast();
 
   const handleChange = (e) => {
-    let { type, value } = e.target;
-    setLogindata({ ...loginData, [type]: value });
+    let { name, value } = e.target;
+    setLogindata({ ...loginData, [name]: value });
   };
+
+  const handleSubmit = () => {
+    let { email, password } = loginData;
+
+    if (!email || !password) {
+      toast({
+        title: "Log In Failed",
+        description: "Fill all the Credentials",
+        status: "error",
+        duration: 1000,
+        isClosable: true,
+        position: "top",
+      });
+    } else if (!email.includes(".com")) {
+      toast({
+        title: "Log In Failed",
+        description: "Enter A Valid Email",
+        status: "error",
+        duration: 1000,
+        isClosable: true,
+        position: "top",
+      });
+    } else if (!email.includes("@")) {
+      toast({
+        title: "Log In Failed",
+        description: "Enter A Valid Email",
+        status: "error",
+        duration: 1000,
+        isClosable: true,
+        position: "top",
+      });
+    } else if (password.length < 5) {
+      toast({
+        title: "Log In Failed",
+        description: "Password Should Contains Minimum 5 Characters",
+        status: "error",
+        duration: 1000,
+        isClosable: true,
+        position: "top",
+      });
+    } else {
+      dispatch(login(loginData));
+    }
+  };
+
+  useEffect(() => {
+    if (status.isError && status.message === "Wrong Credential") {
+      toast({
+        title: "Log In Failed",
+        description: status.message,
+        status: "error",
+        duration: 1200,
+        isClosable: true,
+        position: "top",
+      });
+    } else if (status.isError && status.message === "Register First") {
+      toast({
+        title: "Log In Failed",
+        description: `You Don't Have Acount First Create Account Then Login`,
+        status: "error",
+        duration: 1200,
+        isClosable: true,
+        position: "top",
+      });
+    } else if(status.isError && status.message === "Network Error") {
+      toast({
+        title: "Log In Failed",
+        description: status.message,
+        status: "error",
+        duration: 1200,
+        isClosable: true,
+        position: "top",
+      }); 
+    } else if(status.isError && status.message === "First Verify Your Account Then Login") {
+      toast({
+        title: "Log In Failed",
+        description: status.message,
+        status: "error",
+        duration: 1200,
+        isClosable: true,
+        position: "top",
+      });
+    } else if(status.isAuth) {
+      toast({
+        title: "Log In Success",
+        description: status.message,
+        status: "success",
+        duration: 1200,
+        isClosable: true,
+        position: "top",
+      });
+    }
+    dispatch(resetLogin());
+  }, [toast, status.isError, status.message]);
 
   return (
     <FormControl w={"85%"} mb={{ base: "0.3rem", md: "0.", lg: "0.5rem" }}>
@@ -55,10 +156,10 @@ const LoginMainFrom = () => {
               Password
             </Text>
           </FormLabel>
-          <InputGroup size="md" mb={"1.5rem"}>
+          <InputGroup size="md">
             <Input
               pr="4.5rem"
-              name="password1"
+              name="password"
               type={show ? "text" : "password"}
               placeholder="Enter password"
               bg={"transparent"}
@@ -77,7 +178,7 @@ const LoginMainFrom = () => {
                 onClick={handleClick}
                 fontSize={"12px"}
                 bg={"transparent"}
-                colorScheme={"white"}
+                colorScheme={"transparent"}
                 color={"white"}
               >
                 {show ? "Hide" : "Show"}
@@ -87,7 +188,11 @@ const LoginMainFrom = () => {
         </Box>
 
         <Flex align={"center"} pb={"1rem"}>
-          <Text as="span" mr={"0.4rem"} fontSize={{ base: "0.8rem", md: "0.9rem", lg: "0.9rem" }}>
+          <Text
+            as="span"
+            mr={"0.4rem"}
+            fontSize={{ base: "0.8rem", md: "0.9rem", lg: "0.9rem" }}
+          >
             Remember Me
           </Text>
           <Checkbox bg={"white"} border={"0.5px solid"} size={"sm"}></Checkbox>
@@ -105,6 +210,7 @@ const LoginMainFrom = () => {
               color: "white",
               border: "3px solid #39B7FF",
             }}
+            onClick={handleSubmit}
           >
             <Text fontSize={{ base: "0.8rem", md: "1rem", lg: "1.1rem" }}>
               Log In

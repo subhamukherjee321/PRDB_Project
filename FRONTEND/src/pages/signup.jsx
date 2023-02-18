@@ -9,11 +9,9 @@ import SiteLogo from "../Components/LoginAndSignup/SiteLogo";
 const SignupForm = () => {
   return (
     <Box
-    backgroundImage="url('https://m.media-amazon.com/images/S/aplus-media-library-service-media/83f93ce0-b702-42b6-b000-c4c4c0639f55.__CR0,0,970,600_PT0_SX970_V1___.png')"
-    backgroundRepeat="no-repeat"
-    backgroundSize={"cover"}
-    // bgColor="rgb(3,58,57)"
-    // bg="linear-gradient(125deg, rgba(3,58,57,1) 0%, rgba(3,40,39,1) 44%, rgba(142,242,231,1) 100%, rgba(78,240,238,1) 100%)"
+      backgroundImage="url('https://m.media-amazon.com/images/S/aplus-media-library-service-media/83f93ce0-b702-42b6-b000-c4c4c0639f55.__CR0,0,970,600_PT0_SX970_V1___.png')"
+      backgroundRepeat="no-repeat"
+      backgroundSize={"cover"}
       justify={"center"}
       align={"center"}
       p={"0"}
