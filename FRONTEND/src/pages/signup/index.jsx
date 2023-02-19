@@ -1,10 +1,10 @@
 import { Box, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
-import FormHeading from "../Components/LoginAndSignup/FormHeading";
-import LinkLoginSignup from "../Components/LoginAndSignup/LinkLoginSignup";
-import SignupMainFrom from "../Components/LoginAndSignup/Signup/SignupMainForm";
-import SiteLogo from "../Components/LoginAndSignup/SiteLogo";
+import FormHeading from "../../Components/LoginAndSignup/FormHeading";
+import LinkLoginSignup from "../../Components/LoginAndSignup/LinkLoginSignup";
+import SignupMainFrom from "../../Components/LoginAndSignup/Signup/SignupMainForm";
+import SiteLogo from "../../Components/LoginAndSignup/SiteLogo";
 
 const SignupForm = () => {
   return (

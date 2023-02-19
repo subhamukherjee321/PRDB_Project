@@ -1,11 +1,11 @@
 import { Box, Text } from "@chakra-ui/react";
 
-import ContinueWith from "../Components/LoginAndSignup/ContinueWith";
-import FormHeading from "../Components/LoginAndSignup/FormHeading";
-import SocialMedia from "../Components/LoginAndSignup/SocialMedia";
-import SiteLogo from "../Components/LoginAndSignup/SiteLogo";
-import LinkLoginSignup from "../Components/LoginAndSignup/LinkLoginSignup";
-import LoginMainFrom from "../Components/LoginAndSignup/Login/LoginMainForm";
+import ContinueWith from "../../Components/LoginAndSignup/ContinueWith";
+import FormHeading from "../../Components/LoginAndSignup/FormHeading";
+import SocialMedia from "../../Components/LoginAndSignup/SocialMedia";
+import SiteLogo from "../../Components/LoginAndSignup/SiteLogo";
+import LinkLoginSignup from "../../Components/LoginAndSignup/LinkLoginSignup";
+import LoginMainFrom from "../../Components/LoginAndSignup/Login/LoginMainForm";
 import { useContext } from "react";
 import { ColorContext } from "@/Context/ColorContext";
 
