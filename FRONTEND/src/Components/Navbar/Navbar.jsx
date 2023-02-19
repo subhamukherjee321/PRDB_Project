@@ -20,11 +20,15 @@ import Link from "next/link";
 import Search from "./Search";
 import { useRouter } from "next/router";
 import { FaHeart } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "@/Redux/LoginRedux/Login.Actions";
 
 const Navbar = () => {
   const [cartHover, setCartHover] = useState(false);
   const [accountHover, setAccountHover] = useState(false);
   const { colorStatus, colors } = useContext(ColorContext);
+  const { data } = useSelector((store) => store.login);
+  const dispatch = useDispatch();
   const router = useRouter();
 
   return (
@@ -105,7 +109,12 @@ const Navbar = () => {
         <Search />
 
         {/* Wishlist */}
-        <Flex align={"center"} gap={2} cursor={"pointer"} _hover={{borderBottom: "1px solid"}}>
+        <Flex
+          align={"center"}
+          gap={2}
+          cursor={"pointer"}
+          _hover={{ borderBottom: "1px solid" }}
+        >
           <FaHeart />
           <Text>Wishlist</Text>
         </Flex>
@@ -121,13 +130,13 @@ const Navbar = () => {
           <Text _hover={{ borderBottom: "1px solid black" }}>Account</Text>
           {accountHover && (
             <Box
-              minW={"8%"}
+              minW={"9%"}
               textAlign={"center"}
               position={"absolute"}
               p={"0.7rem"}
               backgroundColor={"white"}
               zIndex={"10"}
-              top={"2.7rem"}
+              top={"2.6rem"}
               fontSize={"0.95rem"}
               boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}
               borderRadius={"0.3rem"}
@@ -135,19 +144,63 @@ const Navbar = () => {
               onMouseOut={() => setAccountHover(false)}
               color={"black"}
             >
-              <Link href={"/login"}>
-                <Box
-                  pb={"0.5rem"}
-                  borderBottom={"0.5px solid gray"}
-                  _hover={{ color: "#FF6900" }}
-                  fontSize={"1rem"}
-                >
-                  Log In
-                </Box>
-              </Link>
-              <Link href={"/signup"}>
-                <Box _hover={{ color: "#FF6900" }}>Sign Up</Box>
-              </Link>
+              {data.token ? (
+                <>
+                  <Link href={"#"}>
+                    <Box
+                      pb={"0.5rem"}
+                      borderBottom={"0.5px solid gray"}
+                      _hover={{ color: "#FF6900" }}
+                      fontSize={"1rem"}
+                    >
+                      {data.username}
+                    </Box>
+                  </Link>
+                  {data.seller && (
+                    <Link href={"/addProducts"}>
+                      <Box
+                        pb={"0.5rem"}
+                        borderBottom={"0.5px solid gray"}
+                        _hover={{ color: "#FF6900" }}
+                        fontSize={"1rem"}
+                      >
+                        Seller
+                      </Box>
+                    </Link>
+                  )}
+                  {data.admin && (
+                    <Link href={"#"}>
+                      <Box
+                        pb={"0.5rem"}
+                        borderBottom={"0.5px solid gray"}
+                        _hover={{ color: "#FF6900" }}
+                        fontSize={"1rem"}
+                      >
+                        Admin
+                      </Box>
+                    </Link>
+                  )}
+                  <Box _hover={{ color: "#FF6900" }} pt={"0.5rem"}>
+                    <Button colorScheme={"red"} onClick={() => dispatch(logout())}>Logout</Button>
+                  </Box>
+                </>
+              ) : (
+                <>
+                  <Link href={"/login"}>
+                    <Box
+                      pb={"0.5rem"}
+                      borderBottom={"0.5px solid gray"}
+                      _hover={{ color: "#FF6900" }}
+                      fontSize={"1rem"}
+                    >
+                      Log In
+                    </Box>
+                  </Link>
+                  <Link href={"/signup"}>
+                    <Box _hover={{ color: "#FF6900" }}>Sign Up</Box>
+                  </Link>
+                </>
+              )}
             </Box>
           )}
         </Flex>

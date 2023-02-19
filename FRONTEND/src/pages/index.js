@@ -11,7 +11,6 @@ import PhotoBannerSlider from "@/Components/Home/PhotoBanner/PhotoBannerSlider";
 import BackToTopButton from "@/Components/Home/HomProductsSlider/BackToTopButton";
 
 export default function Home({products}) {
-  console.log('products: ', products);
 
   return (
     <>
@@ -22,7 +21,7 @@ export default function Home({products}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Box>
-        <Slider />
+        <Slider products={products} />
         <HomeProductsHeading text={"Best Deals For You"} />
         <HomeProductSlider products={products} />
         <HomeProducts products={products} />

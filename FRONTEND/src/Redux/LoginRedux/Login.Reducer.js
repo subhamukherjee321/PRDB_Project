@@ -7,9 +7,7 @@ import {
   } from "./Login.ActionTypes";
 
   import {
-    setItemToStorage,
     getItemFromStorage,
-    removeItemFromStorage,
   } from "../../Data/localStorage";
   
   const loginData = getItemFromStorage("loginData") || {};
