@@ -15,21 +15,23 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, resetLogin } from "@/Redux/LoginRedux/Login.Actions";
+import { useRouter } from "next/router";
+
+const initState = {
+  email: "",
+  password: "",
+};
 
 const LoginMainFrom = () => {
-  const [loginData, setLogindata] = useState({
-    email: "",
-    password: "",
-  });
+  const [loginData, setLogindata] = useState(initState);
 
   const dispatch = useDispatch();
   const status = useSelector((store) => store.login);
-  console.log("status: ", status);
-  console.log(status.isAuth);
 
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
   const toast = useToast();
+  const router = useRouter();
 
   const handleChange = (e) => {
     let { name, value } = e.target;
@@ -81,7 +83,7 @@ const LoginMainFrom = () => {
   };
 
   useEffect(() => {
-    if (status.isError && status.message === "Wrong Credential") {
+    if (status.isError) {
       toast({
         title: "Log In Failed",
         description: status.message,
@@ -90,34 +92,19 @@ const LoginMainFrom = () => {
         isClosable: true,
         position: "top",
       });
-    } else if (status.isError && status.message === "Register First") {
-      toast({
-        title: "Log In Failed",
-        description: `You Don't Have Acount First Create Account Then Login`,
-        status: "error",
-        duration: 1200,
-        isClosable: true,
-        position: "top",
-      });
-    } else if(status.isError && status.message === "Network Error") {
-      toast({
-        title: "Log In Failed",
-        description: status.message,
-        status: "error",
-        duration: 1200,
-        isClosable: true,
-        position: "top",
-      }); 
-    } else if(status.isError && status.message === "First Verify Your Account Then Login") {
-      toast({
-        title: "Log In Failed",
-        description: status.message,
-        status: "error",
-        duration: 1200,
-        isClosable: true,
-        position: "top",
-      });
-    } else if(status.isAuth) {
+      if (status.message !== "Wrong Credential") {
+        setLogindata(initState);
+      }
+      if (
+        status.message ===
+        "You Don't Have Any Acount First Create An Account Then Login"
+      ) {
+        setTimeout(() => {
+          router.push("/signup");
+        }, 2000);
+      }
+    } else if (status.isAuth) {
+      setLogindata(initState);
       toast({
         title: "Log In Success",
         description: status.message,
@@ -126,6 +113,9 @@ const LoginMainFrom = () => {
         isClosable: true,
         position: "top",
       });
+      setTimeout(() => {
+        router.push("/");
+      }, 2000);
     }
     dispatch(resetLogin());
   }, [toast, status.isError, status.message]);
