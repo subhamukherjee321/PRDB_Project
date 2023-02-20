@@ -16,7 +16,7 @@ const LoginFrom = () => {
     <Box
       justify={"center"}
       align={"center"}
-      pt="2rem"
+      pt="3.54rem"
       pb={{ base: "4rem", md: "6rem", lg: "3.8rem" }}
       backgroundImage="url('https://cdn.shopify.com/s/files/1/0057/8938/4802/files/deks_01_76dd96ef-4dc3-466c-944d-b4e38da8b839.jpg?v=1639986488')"
       backgroundRepeat="no-repeat"

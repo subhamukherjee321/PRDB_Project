@@ -9,6 +9,7 @@ import DareToLeap from "@/Components/Home/DareToLeap";
 import VideoBanner from "@/Components/Home/VideoBanner";
 import PhotoBannerSlider from "@/Components/Home/PhotoBanner/PhotoBannerSlider";
 import BackToTopButton from "@/Components/Home/HomProductsSlider/BackToTopButton";
+import Navbar from "@/Components/Navbar/Navbar";
 
 export default function Home({products}) {
 
