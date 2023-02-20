@@ -27,7 +27,9 @@ const SignupMainFrom = () => {
 
   const dispatch = useDispatch();
   const signupStatus = useSelector((store) => store.signup);
+  console.log('signupStatus: ', signupStatus);
   const { data } = signupStatus;
+  console.log('data: ', data);
 
   const [show1, setShow1] = React.useState(false);
   const [show2, setShow2] = React.useState(false);

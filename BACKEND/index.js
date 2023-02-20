@@ -7,6 +7,7 @@ const ProductsRouter = require("./Routes/Products.Router");
 const AuthRouter = require("./Routes/Auth.Router");
 const ErrorMiddleware = require("./Middleware/Error.Middleware");
 const AccessControlMiddleware = require("./Middleware/AccessControl.Middleware");
+const CartRouter = require("./Routes/Cart.Router");
 
 const app = express();
 app.use(AccessControlMiddleware);
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/uploads", express.static("uploads"));
 app.use("/products", ProductsRouter);
 app.use("/auth", AuthRouter);
+app.use("/cart", CartRouter);
 app.use(ErrorMiddleware);
 app.set("view engine", "hbs");
 

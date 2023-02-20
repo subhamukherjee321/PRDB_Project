@@ -12,10 +12,10 @@ export default function App({ Component, pageProps }) {
     <ChakraProvider>
       <ColorContextProvider>
         <Provider store={store}>
-        <ColorModeToggle />
-        <Navbar />
-        <Component {...pageProps} />
-        <Footer />
+          <ColorModeToggle />
+          <Navbar />
+          <Component {...pageProps} />
+          <Footer />
         </Provider>
       </ColorContextProvider>
     </ChakraProvider>
