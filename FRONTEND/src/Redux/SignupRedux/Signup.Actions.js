@@ -8,7 +8,7 @@ import {
 export const signup = (creds) => async (dispatch) => {
   dispatch({ type: SIGNUP_LOADING });
   try {
-    let res = await fetch("https://shopkart-backend.cyclic.app/auth/register", {
+    let res = await fetch("https://baby-blue-clam-wear.cyclic.app/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -11,7 +11,7 @@ export const login = (creds) => async (dispatch) => {
   dispatch({ type: LOGIN_LOADING });
   try {
     let res = await axios.post(
-      "https://shopkart-backend.cyclic.app/auth/login",
+      "https://baby-blue-clam-wear.cyclic.app/auth/login",
       creds
     );
     dispatch({ type: LOGIN_SUCCESS, payload: res.data });

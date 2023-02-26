@@ -8,6 +8,7 @@ import SampleNextArrow from "./SampleNextArrow";
 import SamplePrevArrow from "./SamplePrevArrow";
 
 const HomeProductSlider = ({ products }) => {
+  console.log('products: ', products);
 
   var settings = {
     dots: true,

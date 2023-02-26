@@ -1,20 +1,22 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const tokenSchema = mongoose.Schema(
-  {
-    authID: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "auth",
+const tokenSchema = mongoose.Schema({
+    authId : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'auth'
     },
-    token: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now(), expires: 3600 },
-  },
-  {
-    versionKey: false,
-  }
-);
+    token : {
+        type : String,
+        required : true
+    },
+    createdAt : {
+        type : Date,
+        default : Date.now(),
+        expires : 36000 // 1 Hour
+    }
+},{versionKey : false});
 
-const TokenModel = mongoose.model("token", tokenSchema);
-
-module.exports = TokenModel;
+const tokenModel = mongoose.model("token", tokenSchema);
+module.exports = {
+    tokenModel
+}
