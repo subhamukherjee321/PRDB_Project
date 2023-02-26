@@ -178,7 +178,7 @@ export default Page;
 
 // Getting All The Products
 export async function getStaticPaths() {
-  let res = await fetch("https://shopkart-backend.cyclic.app/products");
+  let res = await fetch("https://baby-blue-clam-wear.cyclic.app/products");
   let data = await res.json();
   console.log("data: ", data);
 
@@ -194,7 +194,7 @@ export async function getStaticProps(context) {
     params: { id },
   } = context;
 
-  let res = await fetch(`https://shopkart-backend.cyclic.app/products/${id}`);
+  let res = await fetch(`https://baby-blue-clam-wear.cyclic.app/products/${id}`);
   let data = await res.json();
 
   return {

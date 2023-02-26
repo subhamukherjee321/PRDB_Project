@@ -45,7 +45,7 @@ const Navbar = () => {
       align={"center"}
       fontWeight={500}
       bg={colors.secondary}
-      position={"sticky"}
+      position={"fixed"}
       top={"0px"}
       zIndex={40}
       display={
@@ -246,6 +246,7 @@ const Navbar = () => {
                 <Box>Order Summary</Box>
                 <Box>0 Item</Box>
               </Flex>
+              <Link href={"/cart"}>
               <Box
                 textAlign={"center"}
                 mt={"1rem"}
@@ -255,6 +256,7 @@ const Navbar = () => {
               >
                 PROCEED TO CART
               </Box>
+              </Link>
             </Box>
           )}
         </Flex>

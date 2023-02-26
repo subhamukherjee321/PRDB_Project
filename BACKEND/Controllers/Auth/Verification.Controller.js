@@ -1,31 +1,28 @@
-require("dotenv").config();
-const key = process.env.secretKey;
-const TokenModel = require("../../Models/Token.Model");
+const {tokenModel} = require("../../Models/Token.model");
+const {authModel} = require("../../Models/Auth.model");
 
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const AuthModel = require("../../Models/Auth.Model");
+const AuthVerification = async (req, res) =>{
+    try {
+        let {authId, token} = req.params;
+        let isToken = await tokenModel.findOne({
+            authId,
+            token
+        });
+        if(!isToken){
+            return res.render("error")
+        }
 
-const verificationController = async (req, res) => {
-  try {
-    let { authID, token } = req.params;
-    let isToken = await TokenModel.findOne({
-      authID,
-      token,
-    });
+        await authModel.updateOne({_id : authId}, {isActive : true});
 
-    if (!isToken) {
-      return res.render("error");
+        await tokenModel.deleteOne({authId});
+
+        res.render("index")
+
+    } catch (error) {
+        return res.render("error");
     }
+}
 
-    await AuthModel.updateOne({ _id: authID }, { isVerified: true });
-
-    await TokenModel.deleteOne({ authID });
-
-    res.render("index");
-  } catch (error) {
-    res.render("error");
-  }
-};
-
-module.exports = verificationController;
+module.exports = {
+    AuthVerification
+}

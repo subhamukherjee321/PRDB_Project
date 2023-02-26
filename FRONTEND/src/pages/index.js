@@ -12,6 +12,7 @@ import BackToTopButton from "@/Components/Home/HomProductsSlider/BackToTopButton
 import Navbar from "@/Components/Navbar/Navbar";
 
 export default function Home({products}) {
+  console.log('products: ', products);
 
   return (
     <>
@@ -40,7 +41,7 @@ export default function Home({products}) {
 }
 
 export async function getStaticProps() {
-  let res = await fetch("https://shopkart-backend.cyclic.app/products");
+  let res = await fetch("https://baby-blue-clam-wear.cyclic.app/products");
   let data = await res.json();
 
   return {

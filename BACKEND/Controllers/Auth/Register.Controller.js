@@ -7,7 +7,7 @@ const SendEmail = require("../../utils/SendEmail");
 const crypto = require("crypto");
 
 const registerController = async (req, res) => {
-  const { username, email, password, isSeller } = req.body;
+  const { username, email, password, isSeller, isAdmin } = req.body;
 
   try {
     // Getting The User Details

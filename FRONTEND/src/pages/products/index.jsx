@@ -60,7 +60,7 @@ export default products;
 
 // Getting All The Data
 export async function getStaticProps() {
-  let res = await fetch("https://shopkart-backend.cyclic.app/products");
+  let res = await fetch("https://baby-blue-clam-wear.cyclic.app/products");
   let data = await res.json();
 
   return {
