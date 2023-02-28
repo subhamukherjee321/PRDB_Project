@@ -4,17 +4,12 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import React, { useContext, useState } from "react";
 import Logo from "../../Assets/Logo2.png";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import { BsCartCheck } from "react-icons/bs";
-import { BiChevronDown } from "react-icons/bi";
 import { ColorContext } from "@/Context/ColorContext";
 import Link from "next/link";
 import Search from "./Search";

@@ -31,7 +31,7 @@ const products = ({ products }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Flex mx={"5rem"} justify={"space-between"}>
+      <Flex mx={"5rem"} justify={"space-between"} mt={"5rem"}>
         {/* Filters */}
         <Filters />
 

@@ -30,8 +30,8 @@ const Page = ({ product }) => {
         <meta name="description" content="movie app created" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box>
-        <Box m={"0.6rem auto"} mx={"2rem"}>
+      <Box minH={"100vh"}>
+        <Box m={"0.6rem auto"} mx={"2rem"} mt={"4rem"}>
           <Tooltip label="Go Back" aria-label="A tooltip">
             <Button
               onClick={() => router.back()}

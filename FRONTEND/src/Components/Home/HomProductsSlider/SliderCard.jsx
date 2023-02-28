@@ -36,7 +36,6 @@ function SliderCard({ item }) {
         transformOrigin: "center",
         boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
       }}
-      onClick={() => handleRoutes(item._id)}
     >
       <Flex
         mr={"1rem"}
@@ -47,6 +46,7 @@ function SliderCard({ item }) {
         position={"relative"}
       >
         <Image
+          onClick={() => handleRoutes(item._id)}
           minH={"100px"}
           mt={"1.1rem"}
           borderRadius={"0.7rem 0.7rem 0 0"}
@@ -87,18 +87,18 @@ function SliderCard({ item }) {
         mb={"0.5rem"}
         bg={colors.secondary}
       >
-        <Heading as={"h4"} fontSize={"1.2rem"} cursor={"pointer"}>
+        <Heading as={"h4"} fontSize={"1.2rem"} cursor={"pointer"} onClick={() => handleRoutes(item._id)}>
           {item.name.substring(0, 20)}
         </Heading>
-        <Flex justify={"space-between"} my={"0.7rem"} w={"70%"}>
+        <Flex justify={"space-between"} my={"0.7rem"} w={"70%"} onClick={() => handleRoutes(item._id)}>
           <Heading as={"h4"} fontSize={"1rem"}>
             ₹ {item.discountPrice}
           </Heading>
           <Text color={"#38A169"}>{item.discount}% off</Text>
           <del style={{ fontSize: "0.8rem" }}>₹ {item.price}</del>
         </Flex>
-        <Text fontSize={"0.9rem"}>{item.description.substring(0, 28)}</Text>
-        <Flex mt={"0.2rem"}>
+        <Text fontSize={"0.9rem"} onClick={() => handleRoutes(item._id)}>{item.description.substring(0, 28)}</Text>
+        <Flex mt={"0.2rem"} onClick={() => handleRoutes(item._id)}>
           <Flex align={"center"}>
             {new Array(~~item.rating).fill(0).map((ele, i) => (
               <AiFillStar color={"#38A169"} key={i} />

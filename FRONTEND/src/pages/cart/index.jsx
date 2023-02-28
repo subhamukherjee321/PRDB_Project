@@ -46,7 +46,7 @@ export default function Cart({ cartItems }) {
     );
   } else {
     return (
-      <Box px={"5rem"} mb={"2rem"} mt={"5rem"}>
+      <Box px={"5rem"} mb={"2rem"} mt={"5rem"} minH={"100vh"}>
         <Heading my={"2rem"} textAlign={"center"} textDecoration={"underline"}>
           CART
         </Heading>

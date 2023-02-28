@@ -22,7 +22,7 @@ export default function Home({products}) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box>
+      <Box mt={"4rem"}>
         <Slider products={products} />
         <HomeProductsHeading text={"Best Deals For You"} />
         <HomeProductSlider products={products} />
